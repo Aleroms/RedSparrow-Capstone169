@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2.22
   _gravity: 9.82
+  _bulletPrefab: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0,
+    type: 3}
 --- !u!143 &5347308938205809258
 CharacterController:
   m_ObjectHideFlags: 0

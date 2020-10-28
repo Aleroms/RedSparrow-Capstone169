@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private float _gravity = 9.82f;
 
+	[SerializeField]
+	private GameObject _bulletPrefab;
+
 	void Start()
 	{
 		_controller = GetComponent<CharacterController>();
@@ -24,7 +27,7 @@ public class Player : MonoBehaviour
 	{
 		CalculateMovement();
 
-		if(Input.GetKey(KeyCode.Mouse0))
+		if(Input.GetKeyDown(KeyCode.Mouse0))
 		{
 			Shoot();
 		}
@@ -32,7 +35,11 @@ public class Player : MonoBehaviour
 
 	void Shoot()
 	{
-
+		Debug.Log("testing");
+		Vector3 offset = new Vector3(0, 0.25f, 1);
+		GameObject bullet = Instantiate(_bulletPrefab, transform.position + offset, Quaternion.identity);
+		
+		Destroy(bullet, 4.0f);
 	}
 	void CalculateMovement()
 	{
