@@ -857,6 +857,11 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 1056227117}
+    - target: {fileID: 6806705972517710208, guid: 6da9987b1fd42fa42bf8eb7287b98f4e,
+        type: 3}
+      propertyPath: _groundMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6da9987b1fd42fa42bf8eb7287b98f4e, type: 3}
 --- !u!4 &1135176622 stripped
@@ -948,7 +953,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-24636
+  m_Name: pb_Mesh12096
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -1289,7 +1294,7 @@ GameObject:
   - component: {fileID: 2022270289}
   - component: {fileID: 2022270288}
   - component: {fileID: 2022270287}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
