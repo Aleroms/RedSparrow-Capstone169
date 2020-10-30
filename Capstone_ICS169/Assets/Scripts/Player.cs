@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
 {
 	private CharacterController _controller;
 
-	public bool _isgrounded;
+	[SerializeField]
+	private bool _isgrounded;
+	[SerializeField]
+	private bool _iscrouching;
 
 	[SerializeField]
 	private float _speed = 5f;
@@ -15,16 +18,23 @@ public class Player : MonoBehaviour
 	private float _gravity = 9.82f;
 	[SerializeField]
 	private float _jumpHeight = 15f;
-	private float _yVelocity;
+	[SerializeField]
+	private float _crouchHeight = 0.8f;
+	[SerializeField]
+	private float _groundDistance = 0.4f;
 
 	[SerializeField]
-	private int health = 100;
+	private int _health = 100;
 
-	public Transform groundCheck;
-	public float groundDistance = 0.4f;
-	public LayerMask groundMask;
+	[SerializeField]
+	private Transform _groundCheck;
+	[SerializeField]
+	private Transform _ceilingCheck;
+
+	[SerializeField]
+	private LayerMask _groundMask;
 	
-	Vector3 velocity;
+	private Vector3 _velocity;
 
 	void Start()
 	{
@@ -37,41 +47,58 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		CalculateMovement();
-		
+		Movement();
+		Jump();
+		Crouch();
 	}
 	
-	void CalculateMovement()
-	{
-		_isgrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+	void Movement()//function works properly when proper layerMask is set to ground. 
+	{	//returns true if player is grounded
+		_isgrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
 
-		if(_isgrounded && velocity.y < 0f)
-		{
-			velocity.y = -2f;
-		}
+		if(_isgrounded && _velocity.y < 0f)
+			_velocity.y = -2f;
+		
+
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 		Vector3 direction = x * transform.right + z * transform.forward;
 
 		_controller.Move(direction * Time.deltaTime * _speed);
-
-		if(Input.GetButtonDown("Jump") && _isgrounded)
+	
+	}
+	void Jump()
+	{
+		if (Input.GetButtonDown("Jump") && _isgrounded)
 		{
-			velocity.y = Mathf.Sqrt(-2f * _jumpHeight * -1 *_gravity);
+			_velocity.y = Mathf.Sqrt(-2f * _jumpHeight * -1 * _gravity);
 		}
 
-		velocity.y -= _gravity * Time.deltaTime;
+		_velocity.y -= _gravity * Time.deltaTime;
 
-		_controller.Move(velocity * Time.deltaTime);
+		_controller.Move(_velocity * Time.deltaTime);
+	}
+	void Crouch()
+	{	//works with ground layerMask
+		_iscrouching = Physics.CheckSphere(_ceilingCheck.position, _groundDistance,_groundMask);
+
+		if (Input.GetKey(KeyCode.LeftControl))
+		{
+			_iscrouching = true;
+			_controller.height = 0.8f;
+		}
 		
+
+		if(Input.GetKeyUp(KeyCode.LeftControl) && _iscrouching == false)
+		{
+			_controller.height = 1.8f;
+		}
+	
 	}
-	void OnTriggerEnter()
-	{
-		_isgrounded = true;//jumping
-	}
+	
 	public int GetCurrentHealth()
 	{
-		return health;
+		return _health;
 	}
 
 	
