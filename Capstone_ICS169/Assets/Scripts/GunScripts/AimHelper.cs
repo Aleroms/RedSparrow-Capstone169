@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 /*
 This script points the arm and gun twords the aim dot so we dont have to.
 This is manyly for guns shooting physical bullets so the bullets travel towards the crosshair
