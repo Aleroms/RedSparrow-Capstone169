@@ -81,17 +81,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isgrounded: 0
   _iscrouching: 0
-  _speed: 8
+  _speedOriginal: 0
   _gravity: 39.28
   _jumpHeight: 2
   _crouchHeight: 0.8
   _groundDistance: 0.4
+  _sprintCooldown: 1
+  _sprintDuration: 3
+  _sprintSpeed: 10
   _health: 100
   _groundCheck: {fileID: 1099088509487323945}
   _ceilingCheck: {fileID: 222944667}
   _groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!143 &5347308938205809258
 CharacterController:
   m_ObjectHideFlags: 0
