@@ -41,7 +41,10 @@ public class Player : MonoBehaviour
 		_controller = GetComponent<CharacterController>();
 
 		if (_controller == null) Debug.LogError("controller is null");
-
+        //Set the private variables when object is instantiated to avoid warnings
+        _groundCheck = gameObject.transform.GetChild(1);
+        _ceilingCheck = gameObject.transform.GetChild(2);
+        _groundMask = LayerMask.GetMask("Ground");
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
@@ -85,7 +88,7 @@ public class Player : MonoBehaviour
 		if (Input.GetKey(KeyCode.LeftControl))
 		{
 			_iscrouching = true;
-			_controller.height = 0.8f;
+			_controller.height = _crouchHeight;
 		}
 		
 

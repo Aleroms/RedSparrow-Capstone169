@@ -9,10 +9,14 @@ public class MouseLook : MonoBehaviour
 	[SerializeField]
 	private Transform _player;
 	private float _xRot;
-	
 
-	// Update is called once per frame
-	void Update()
+
+    private void Start()
+    {
+        _player = transform.parent.transform;
+    }
+    // Update is called once per frame
+    void Update()
 	{
 		float _mouseX = Input.GetAxis("Mouse X") * _sensitivity * Time.deltaTime;
 		float _mouseY = Input.GetAxis("Mouse Y") * _sensitivity * Time.deltaTime;
