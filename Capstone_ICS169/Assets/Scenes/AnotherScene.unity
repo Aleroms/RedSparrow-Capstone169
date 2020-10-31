@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitScanScript: {fileID: 0}
-  bulletScript: {fileID: 0}
+  bulletScript: {fileID: 649591795}
   gunRB: {fileID: 649591792}
   gunBC: {fileID: 649591793}
   player: {fileID: 221896613}
@@ -514,6 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0647b3a773a575a4da69caf773b30d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
+  semifireRate: 0.25
+  autofireRate: 0.25
   _bulletPrefab: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0,
     type: 3}
   gunEnd: {fileID: 1073422261}

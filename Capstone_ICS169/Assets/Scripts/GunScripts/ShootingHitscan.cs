@@ -6,11 +6,15 @@ using UnityEngine;
 public class ShootingHitscan : MonoBehaviour
 {
     [SerializeField]
+    private int type = 1; //What type of fire maode is used. 1 = semi auto, 2 = full auto
+    [SerializeField]
     private int gunDamage = 1; //Damage the laser does
     [SerializeField]
-    private float fireRate = .25f; // How quickly the gun can fire
+    private float semifireRate = .25f; // How quickly the gun can fire as a semi-automatic
     [SerializeField]
-    private float weaponRange = 50f;// How the the lazer can go
+    private float autofireRate = .25f; // How quickly the gun can fire as a fully automatic
+    [SerializeField]
+    private float weaponRange = 50f;// How far the laser can go
     [SerializeField]
     private float knockBack = 100f;// How hard the laser hits targets
     [SerializeField]
@@ -18,7 +22,7 @@ public class ShootingHitscan : MonoBehaviour
 
     private Camera aimCamera;// This will be the origin point for the ray cast. 
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);// This is how long the lazer will last onscreen
-    private LineRenderer laserLine;// This is te laser
+    private LineRenderer laserLine;// This is the laser
     private float nextFireTime;//This used with fireRate determines when the gun can fire
 
     void Start()
@@ -29,8 +33,13 @@ public class ShootingHitscan : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >nextFireTime)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFireTime && type == 1)
         {
+            setCoolDown();
+            StartCoroutine(bulletEffect());
+            Shoot();
+        }
+        else if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextFireTime && type == 2) {
             setCoolDown();
             StartCoroutine(bulletEffect());
             Shoot();
@@ -60,7 +69,12 @@ public class ShootingHitscan : MonoBehaviour
 
     void setCoolDown()
     {
-        nextFireTime = Time.time + fireRate;
+        if (type == 1) {
+            nextFireTime = Time.time + semifireRate;
+        }
+        else{
+            nextFireTime = Time.time + autofireRate;
+        }
     }
 
     private IEnumerator bulletEffect() {

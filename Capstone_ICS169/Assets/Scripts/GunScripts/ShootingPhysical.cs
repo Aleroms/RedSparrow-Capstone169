@@ -4,27 +4,53 @@ using UnityEngine;
 
 //This script is for shooting the physical prototype building
 //Basically moved shoot function from the Player script into here
+//And then mashed it with code from the shootingHitscan script
 public class ShootingPhysical : MonoBehaviour
-{ 
+{
     [SerializeField]
-    private GameObject _bulletPrefab;
+    private int type = 1; //What type of fire maode is used. 1 = semi auto, 2 = full auto
     [SerializeField]
-    private Transform gunEnd;
+    private float semifireRate = .25f; // How quickly the gun can fire as a semi-automatic
+    [SerializeField]
+    private float autofireRate = .25f; // How quickly the gun can fire as a fully automatic
+    [SerializeField]
+    private GameObject _bulletPrefab;// What bulet we will be shooting
+    [SerializeField]
+    private Transform gunEnd;// The end of the gun
+
+    private float nextFireTime;//This used with fireRate determines when the gun can fire
 
     // Start is called before the first frame update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFireTime && type == 1)
         {
+            setCoolDown();
+            Shoot();
+        }
+        else if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextFireTime && type == 2)
+        {
+            setCoolDown();
             Shoot();
         }
     }
 
     void Shoot()
     {
-        Vector3 offset = new Vector3(0, 0.25f, 1);
         GameObject bullet = Instantiate(_bulletPrefab, gunEnd.position, gunEnd.rotation);
 
-        Destroy(bullet, 4.0f);
+        Destroy(bullet, 4.0f);//This line is ok...for now...
+    }
+
+    void setCoolDown()
+    {
+        if (type == 1)
+        {
+            nextFireTime = Time.time + semifireRate;
+        }
+        else
+        {
+            nextFireTime = Time.time + autofireRate;
+        }
     }
 }
