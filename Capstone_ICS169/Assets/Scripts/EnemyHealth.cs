@@ -9,7 +9,6 @@ public class EnemyHealth : MonoBehaviour
     private int HP = 10;
 
     public void gotDamaged(int damage) {
-        Debug.Log("hit!");
         HP -= damage;
         if (HP == 0) {
             Die();

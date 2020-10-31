@@ -253,12 +253,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &221896613 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1916943055000976223, guid: 6da9987b1fd42fa42bf8eb7287b98f4e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1135176621}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &296589152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,6 +322,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27077370d45480f4b8532786f17defcf, type: 3}
+--- !u!1 &436614519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1916943055000976211, guid: 6da9987b1fd42fa42bf8eb7287b98f4e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1135176621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &436614520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436614519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f82e9e6049f0e54eb2925f049a1bfe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyBindings:
+    shoot: Mouse0
+    pickUp: e
+    drop: q
 --- !u!1 &521750742
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +511,7 @@ MonoBehaviour:
   bulletScript: {fileID: 649591795}
   gunRB: {fileID: 649591792}
   gunBC: {fileID: 649591793}
-  player: {fileID: 221896613}
+  player: {fileID: 436614519}
   hand: {fileID: 1786706085}
   playerCamera: {fileID: 1135176622}
   pickUpRange: 3
@@ -514,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0647b3a773a575a4da69caf773b30d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 436614519}
   type: 2
   semifireRate: 0.25
   autofireRate: 0.25

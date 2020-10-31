@@ -6,6 +6,8 @@ using UnityEngine;
 public class ShootingHitscan : MonoBehaviour
 {
     [SerializeField]
+    private GameObject player;
+    [SerializeField]
     private int type = 1; //What type of fire maode is used. 1 = semi auto, 2 = full auto
     [SerializeField]
     private int gunDamage = 1; //Damage the laser does
@@ -33,13 +35,13 @@ public class ShootingHitscan : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFireTime && type == 1)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 1)
         {
             setCoolDown();
             StartCoroutine(bulletEffect());
             Shoot();
         }
-        else if (Input.GetKey(KeyCode.Mouse0) && Time.time > nextFireTime && type == 2) {
+        else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 2) {
             setCoolDown();
             StartCoroutine(bulletEffect());
             Shoot();

@@ -11,7 +11,7 @@ public class PickUpController : MonoBehaviour
     [SerializeField]
     private BoxCollider gunBC;
     [SerializeField]
-    private Transform player;
+    private GameObject player;
     [SerializeField]
     private Transform hand;
     [SerializeField]
@@ -38,11 +38,12 @@ public class PickUpController : MonoBehaviour
 
     void Update()
     {
-        Vector3 distToPlayer = player.position - transform.position;
-        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.E) && !slotFull) {
+        Vector3 distToPlayer = player.transform.position - transform.position;
+        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getPickUp()) && !slotFull) {
             PickUp();
         }
-        if (isEquipped && Input.GetKeyDown(KeyCode.Q)){
+        if (isEquipped && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getDrop()))
+        {
             Drop();
         }
     }

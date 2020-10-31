@@ -79,7 +79,10 @@ public class Player : MonoBehaviour
 		if(_isgrounded && _velocity.y < 0f)
 			_velocity.y = -2f;
 		
-
+        /*
+        Question, assume i'm a left handed user (I play with the mouse in my left hand and use "IJKL" for moving...
+        How do I change keybindings so it's not "WASD" anymore after the game has been built?
+        */
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 		Vector3 direction = x * transform.right + z * transform.forward;

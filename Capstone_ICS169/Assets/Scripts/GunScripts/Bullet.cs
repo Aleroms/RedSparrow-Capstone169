@@ -8,11 +8,16 @@ public class Bullet : MonoBehaviour
     private int bulletDamage = 1;
     [SerializeField]
     private float _speed = 5f;
+    [SerializeField]
+    private float lifetime = 2f;
 
-    // Update is called once per frame
     void Update()
     {
 		transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        lifetime -= Time.deltaTime;
+        if (lifetime <= 0) {
+            Die();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -22,6 +27,10 @@ public class Bullet : MonoBehaviour
         {
             health.gotDamaged(bulletDamage);
         }
+        Die();
+    }
+
+    private void Die() {
         Destroy(gameObject);
     }
 }
