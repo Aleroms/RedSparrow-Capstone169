@@ -106,8 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2a983386513d944b8c25a61a47fcb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  type: 1
   gunDamage: 1
-  fireRate: 0.25
+  semifireRate: 0.25
+  autofireRate: 0.25
   weaponRange: 50
   knockBack: 100
   gunEnd: {fileID: 7054321940618528047}
@@ -158,7 +161,7 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.10267639
+        time: 0.09875488
         value: 0.08823952
         inSlope: 0
         outSlope: 0
