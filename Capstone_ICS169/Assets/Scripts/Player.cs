@@ -57,10 +57,12 @@ public class Player : MonoBehaviour
 		_controller = GetComponent<CharacterController>();
 
 		if (_controller == null) Debug.LogError("controller is null");
+
         //Set the private variables when object is instantiated to avoid warnings
         _groundCheck = gameObject.transform.GetChild(1);
         _ceilingCheck = gameObject.transform.GetChild(2);
         _groundMask = LayerMask.GetMask("Ground");
+
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
@@ -79,10 +81,7 @@ public class Player : MonoBehaviour
 		if(_isgrounded && _velocity.y < 0f)
 			_velocity.y = -2f;
 		
-        /*
-        Question, assume i'm a left handed user (I play with the mouse in my left hand and use "IJKL" for moving...
-        How do I change keybindings so it's not "WASD" anymore after the game has been built?
-        */
+        //uses input from WASD and IJKL
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 		Vector3 direction = x * transform.right + z * transform.forward;
