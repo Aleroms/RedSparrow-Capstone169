@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempSniper
       objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: 2e4379073cc44f04b90050654d323da2, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: 2e4379073cc44f04b90050654d323da2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.727
@@ -1287,6 +1291,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: 93d31b51510f38941a7583a6d46d2476, type: 3}
       propertyPath: m_Name
       value: TempPistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 93d31b51510f38941a7583a6d46d2476, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 93d31b51510f38941a7583a6d46d2476, type: 3}
       propertyPath: m_LocalPosition.x
