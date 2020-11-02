@@ -46,9 +46,13 @@ public class PickUpController : MonoBehaviour
         {
             Drop();
         }
+        if(isEquipped && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getSwitchFireType())){
+            SwitchFireType();
+        }
     }
 
     void PickUp() {
+        gameObject.tag = "Player";
         setThingsTrue();
         transform.SetParent(hand);
         transform.localPosition = Vector3.zero;
@@ -57,6 +61,7 @@ public class PickUpController : MonoBehaviour
     }
 
     void Drop() {
+        gameObject.tag = "Untagged";
         setThingsFalse();
         transform.SetParent(null);
         gunRB.AddForce(playerCamera.forward * dropForwardForce, ForceMode.Impulse);
@@ -90,6 +95,19 @@ public class PickUpController : MonoBehaviour
         else if (bulletScript != null)
         {
             bulletScript.enabled = true;
+        }
+    }
+
+    void SwitchFireType() {
+        if (hitScanScript != null && bulletScript != null) {
+            if (hitScanScript.enabled == true) {
+                hitScanScript.enabled = false;
+                bulletScript.enabled = true;
+            }
+            else if (bulletScript.enabled == true) {
+                hitScanScript.enabled = true;
+                bulletScript.enabled = false;
+            }
         }
     }
 }
