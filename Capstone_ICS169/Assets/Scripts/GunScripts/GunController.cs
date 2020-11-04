@@ -210,14 +210,16 @@ public class GunController : MonoBehaviour
             }
         }
         ammoCount += ammoGotten;//Finally, we add the ammo we got to the ammo count
-        //And the gun can shoot again 
-        if (hitScanScript != null && PgunType == 3)
-        {
-            hitScanScript.enabled = true;
-        }
-        if (bulletScript != null && (PgunType == 1 || PgunType == 2))
-        {
-            bulletScript.enabled = true;
+        //If we actually added ammo to the gun then the gun can shoot again 
+        if (ammoCount > 0) {
+            if (hitScanScript != null && PgunType == 3)
+            {
+                hitScanScript.enabled = true;
+            }
+            if (bulletScript != null && (PgunType == 1 || PgunType == 2))
+            {
+                bulletScript.enabled = true;
+            }
         }
     }
 }

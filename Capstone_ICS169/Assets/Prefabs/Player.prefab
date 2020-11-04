@@ -330,9 +330,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats:
-    littleAmmoPool: 100
-    largeAmmoPool: 100
-    laserAmmoPool: 100
+    littleAmmoPool: 0
+    largeAmmoPool: 0
+    laserAmmoPool: 0
     hasGun: 0
 --- !u!1 &1916943055603452685
 GameObject:
