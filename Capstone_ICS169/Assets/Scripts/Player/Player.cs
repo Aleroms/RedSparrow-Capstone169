@@ -36,7 +36,8 @@ public class Player : MonoBehaviour
 	private float _sprintSpeed = 10f;
 
 	[SerializeField]
-	private int _health = 100;
+	private int _health;
+	private int _maxHealth = 100;
 
 	[SerializeField]
 	private Transform _groundCheck;
@@ -48,15 +49,25 @@ public class Player : MonoBehaviour
 	
 	private Vector3 _velocity;
 
+	private PlayerUI _pUI;
+
 	void Start()
 	{
 		_issprinting = false;
 		_speedOriginal = _speed;
 		_stamina = _maxStamina;
+		_health = _maxHealth;
 
 		_controller = GetComponent<CharacterController>();
+		_pUI = GameObject.Find("Canvas").GetComponent<PlayerUI>();
 
 		if (_controller == null) Debug.LogError("controller is null");
+		if (_pUI == null) Debug.LogError("PlayerUI is null");
+
+		//initializes Health/Stamina bar UI
+		_pUI.SetMaxHealth(_maxHealth);
+		_pUI.SetMaxStamina(_maxStamina);
+		_pUI.HealthBar(_maxHealth);
 
         //Set the private variables when object is instantiated to avoid warnings
         _groundCheck = gameObject.transform.GetChild(1);
@@ -73,7 +84,24 @@ public class Player : MonoBehaviour
 		Crouch();
 		Sprint();
 	}
-	
+	public int GetCurrentHealth()
+	{
+		return _health;
+	}
+	public int GetMaxHealth()
+	{
+		return _maxHealth;
+	}
+	public float GetCurrentStamina()//might delete
+	{
+		return _stamina;
+	}
+	public void Damage(int damage)//so enemies.cs has a func to call
+	{
+		_health -= damage;
+		_pUI.HealthBar(_health);
+	}
+
 	void Movement()//function works properly when proper layerMask is set to ground. 
 	{	//returns true if player is grounded
 		_isgrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
@@ -140,12 +168,10 @@ public class Player : MonoBehaviour
 			if (_maxStamina > _stamina)
 				_stamina += Time.deltaTime;
 		}
+
+		_pUI.StaminaBar(_stamina);
 	}
 	
-	public int GetCurrentHealth()
-	{
-		return _health;
-	}
-
+	
 	
 }
