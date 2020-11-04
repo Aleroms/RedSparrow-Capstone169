@@ -67,6 +67,7 @@ public class ShootingHitscan : MonoBehaviour
         else {//If we hit nothing, set the end of the laser to it's max range
             laserLine.SetPosition(1, rayOrigin + (aimCamera.transform.forward * weaponRange));
         }
+        gameObject.GetComponent<GunController>().decreaseAmmo();
     }
 
     void setCoolDown()

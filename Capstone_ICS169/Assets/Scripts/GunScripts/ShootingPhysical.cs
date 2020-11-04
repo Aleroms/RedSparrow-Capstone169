@@ -41,7 +41,7 @@ public class ShootingPhysical : MonoBehaviour
     {
         GameObject bullet = Instantiate(_bulletPrefab, gunEnd.position, gunEnd.rotation);
 
-        Destroy(bullet, 4.0f);//This line is ok...for now...
+        gameObject.GetComponent<GunController>().decreaseAmmo();
     }
 
     void setCoolDown()
