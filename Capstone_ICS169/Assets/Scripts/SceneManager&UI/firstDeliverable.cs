@@ -12,6 +12,7 @@ public class firstDeliverable : MonoBehaviour
 	{
 		if(other.tag == "Player")
 		{
+			Cursor.lockState = CursorLockMode.None;
 			SceneManager.LoadScene("Credits");
 		}
 	}
