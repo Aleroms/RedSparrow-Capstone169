@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 757424875193821136, guid: 854a2ebe1c4d3e24493aed3c56c42ff5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 757424875193821136, guid: 854a2ebe1c4d3e24493aed3c56c42ff5,
         type: 3}
@@ -325,12 +325,12 @@ GameObject:
   - component: {fileID: 202420788}
   - component: {fileID: 202420787}
   m_Layer: 5
-  m_Name: player_crosshair
+  m_Name: player_crosshair (old)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &202420786
 RectTransform:
   m_ObjectHideFlags: 0
@@ -599,8 +599,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 0}
   _staminaSlider: {fileID: 0}
-  pickupPrompt: {fileID: 1364036572}
-  pickupPromptTimer: 0
 --- !u!1 &521750742
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +692,7 @@ RectTransform:
   m_Children:
   - {fileID: 202420786}
   - {fileID: 1364036571}
+  - {fileID: 813316561}
   - {fileID: 648444952}
   - {fileID: 1986697598}
   m_Father: {fileID: 0}
@@ -718,8 +717,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 648444953}
   _staminaSlider: {fileID: 1986697599}
-  pickupPrompt: {fileID: 1364036572}
-  pickupPromptTimer: 0
 --- !u!224 &648444952 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 757424875193821136, guid: 854a2ebe1c4d3e24493aed3c56c42ff5,
@@ -738,6 +735,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &813316560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813316561}
+  - component: {fileID: 813316563}
+  - component: {fileID: 813316562}
+  m_Layer: 5
+  m_Name: player_crosshair (new)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &813316561
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813316560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 521750746}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 960, y: 540}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &813316562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813316560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.72156864}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &813316563
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813316560}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1135176621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -868,7 +940,7 @@ PrefabInstance:
     - target: {fileID: 6574578052825869988, guid: 3d3edd42a52217d44ba0939545c0a3e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6574578052825869988, guid: 3d3edd42a52217d44ba0939545c0a3e5,
         type: 3}
@@ -959,7 +1031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1364036571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -976,7 +1048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -474.5, y: -282}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364036572
@@ -5945,6 +6017,23 @@ PrefabInstance:
       propertyPath: pickupPrompt
       value: 
       objectReference: {fileID: 1364036572}
+    - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
+        type: 3}
+      propertyPath: reticleGun
+      value: 
+      objectReference: {fileID: 21300000, guid: ae6ad131245e9a44090617502c46ec10,
+        type: 3}
+    - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
+        type: 3}
+      propertyPath: reticleDefault
+      value: 
+      objectReference: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c,
+        type: 3}
+    - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
+        type: 3}
+      propertyPath: reticlePlayer
+      value: 
+      objectReference: {fileID: 813316562}
     - target: {fileID: 245839652728327206, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: m_Name
@@ -6103,6 +6192,23 @@ PrefabInstance:
       propertyPath: pickupPrompt
       value: 
       objectReference: {fileID: 1364036572}
+    - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
+        type: 3}
+      propertyPath: reticleGun
+      value: 
+      objectReference: {fileID: 21300000, guid: e623dc0da301a384ebf656aef449a39e,
+        type: 3}
+    - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
+        type: 3}
+      propertyPath: reticlePlayer
+      value: 
+      objectReference: {fileID: 813316562}
+    - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
+        type: 3}
+      propertyPath: reticleDefault
+      value: 
+      objectReference: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c,
+        type: 3}
     - target: {fileID: 4297523751006722407, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: player
@@ -6400,6 +6506,23 @@ PrefabInstance:
       propertyPath: pickupPrompt
       value: 
       objectReference: {fileID: 1364036572}
+    - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
+        type: 3}
+      propertyPath: reticlePlayer
+      value: 
+      objectReference: {fileID: 813316562}
+    - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
+        type: 3}
+      propertyPath: reticleDefault
+      value: 
+      objectReference: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c,
+        type: 3}
+    - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
+        type: 3}
+      propertyPath: reticleGun
+      value: 
+      objectReference: {fileID: 21300000, guid: dba45f05e8dd10445b80ca79c8d64423,
+        type: 3}
     - target: {fileID: 5874952970862044139, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: m_Name
