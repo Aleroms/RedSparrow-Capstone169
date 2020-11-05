@@ -7,9 +7,11 @@ public class HealthUI : MonoBehaviour
 {
 	public float cooldown;
 	public Image healthbar;
+	public Image staminabar;
 
 	private Player _player;
 	private int _health;
+	private float _stamina;
 	// Start is called before the first frame update
 	void Start()
     {
@@ -22,6 +24,7 @@ public class HealthUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		
 		if (Input.GetKey(KeyCode.V) && cooldown == 0)
 		{
 			cooldown = 2;
@@ -41,6 +44,19 @@ public class HealthUI : MonoBehaviour
 
 
 		}
+
+		_stamina = _player.GetCurrentStamina(); // stamina bar
+		if (_stamina < 5)
+		{
+			staminabar.gameObject.SetActive(true);
+			staminabar.transform.localScale = new Vector3(_stamina / 5f, 1, 1);
+			staminabar.transform.localPosition = new Vector2(((1f - staminabar.transform.localScale.x) * -125f) - 125f, staminabar.transform.localPosition.y);
+		}
+			
+		else
+			staminabar.gameObject.SetActive(false);
+
+
 
 		if (cooldown > 0)
 			cooldown -= Time.deltaTime;

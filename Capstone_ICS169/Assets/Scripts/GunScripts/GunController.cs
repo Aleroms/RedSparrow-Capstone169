@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class GunController : MonoBehaviour
 {
     [SerializeField]
@@ -31,7 +31,7 @@ public class GunController : MonoBehaviour
 
     public bool isEquipped;//Is the gun currently equiped?
     public int ammoCount;// How many bullets does the gun have right now
-
+    
     void Start()
     {
         ammoCount = Random.Range(0, maxAmmoCount+1);// First, we will give the gun a random amount of ammo (Ammo cant exceed the max set earlier)
@@ -46,6 +46,12 @@ public class GunController : MonoBehaviour
     void Update()
     {
         Vector3 distToPlayer = player.transform.position - transform.position;//Every update, we wanna know how far away the player is to the gun
+        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && !player.GetComponent<PlayerStatTrack>().getHasGun()) //pickup prompt
+        {
+            player.GetComponent<PlayerUI>().pickupPrompt.text = "Press E to pickup " + name + ".";
+            player.GetComponent<PlayerUI>().pickupPrompt.gameObject.SetActive(true);
+            player.GetComponent<PlayerUI>().pickupPromptTimer = 0.125f;
+        }
         //If the gun is not equiped, and the player is close enough to equip it, and the player presses the key to equip the gun, AND the player isn't already holding a gun
         if (!isEquipped && distToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getPickUp()) && !player.GetComponent<PlayerStatTrack>().getHasGun()) {
             PickUp();//Then pick up the gun
@@ -74,6 +80,7 @@ public class GunController : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
+        GetComponent<BoxCollider>().enabled = false; // disable weapon collision
     }
 
     //When we drop a gun
@@ -82,6 +89,7 @@ public class GunController : MonoBehaviour
         setThingsFalse();//Some things are set to false
         transform.SetParent(null);//The hand is no longer the parent
         //And we add forces to toss the gun away
+        GetComponent<BoxCollider>().enabled = true; // enable weapon collision
         gunRB.AddForce(playerCamera.forward * dropForwardForce, ForceMode.Impulse);
         gunRB.AddForce(playerCamera.forward * dropUpwardForce, ForceMode.Impulse);
     }
@@ -111,11 +119,11 @@ public class GunController : MonoBehaviour
         player.GetComponent<PlayerStatTrack>().setHasGun(true);
         gunRB.isKinematic = true;
         gunBC.isTrigger = true;
-        if (hitScanScript != null)
+        if (hitScanScript != null && ammoCount > 0) // fixed bug where you can fire once after picking up an empty ammo weapon
         {
             hitScanScript.enabled = true;
         }
-        else if (bulletScript != null)
+        else if (bulletScript != null && ammoCount > 0)
         {
             bulletScript.enabled = true;
         }
