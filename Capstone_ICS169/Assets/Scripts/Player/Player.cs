@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
 				_stamina += Time.deltaTime;
 		}
 
-		//_pUI.StaminaBar(_stamina);
+		_pUI.StaminaBar(_stamina);
 	}
 	
 	

@@ -9,17 +9,11 @@ public class PlayerUI : MonoBehaviour
 	private Slider _healthSlider;
 	[SerializeField]
 	private Slider _staminaSlider;
-	public Text pickupPrompt;
-	public float pickupPromptTimer;
-	/*
-	[SerializeField]
-	private Image _healthBarUI;
-	[SerializeField]
-	private Image _staminaBarUI;
-	//[SerializeField]
-	//private Image _ammoBarUI;
- 
-	*/
+	public Text pickupPrompt;//weaponUI should not be here. This should only be playerUI
+	public float pickupPromptTimer;//same with this
+
+	
+	
 
 	public void SetMaxHealth(int h)
 	{
