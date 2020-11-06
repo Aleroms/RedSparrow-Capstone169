@@ -62,12 +62,17 @@ public class Player : MonoBehaviour
 		_pUI = GameObject.Find("Canvas").GetComponent<PlayerUI>();
 
 		if (_controller == null) Debug.LogError("controller is null");
-		if (_pUI == null) Debug.LogError("PlayerUI is null");
+		if (_pUI == null) 
+			Debug.LogError("PlayerUI is null");
+		else
+		{
+			//initializes Health/Stamina bar UI
+			_pUI.SetMaxHealth(_maxHealth);
+			_pUI.SetMaxStamina(_maxStamina);
+			_pUI.HealthBar(_maxHealth);
+		}
 
-		//initializes Health/Stamina bar UI
-		_pUI.SetMaxHealth(_maxHealth);
-		_pUI.SetMaxStamina(_maxStamina);
-		_pUI.HealthBar(_maxHealth);
+		
 
         //Set the private variables when object is instantiated to avoid warnings
         _groundCheck = gameObject.transform.GetChild(1);
@@ -168,8 +173,8 @@ public class Player : MonoBehaviour
 			if (_maxStamina > _stamina)
 				_stamina += Time.deltaTime;
 		}
-
-		_pUI.StaminaBar(_stamina);
+		if(_pUI != null)
+			_pUI.StaminaBar(_stamina);
 	}
 	
 	

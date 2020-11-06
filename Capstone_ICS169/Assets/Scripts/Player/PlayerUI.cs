@@ -8,17 +8,11 @@ public class PlayerUI : MonoBehaviour
 	[SerializeField]
 	private Slider _healthSlider;
 	[SerializeField]
-	private Slider _staminaSlider; 
+	private Slider _staminaSlider;
+
+
 	
-	/*
-	[SerializeField]
-	private Image _healthBarUI;
-	[SerializeField]
-	private Image _staminaBarUI;
-	//[SerializeField]
-	//private Image _ammoBarUI;
- 
-	*/ 
+	
 
 	public void SetMaxHealth(int h)
 	{
@@ -37,4 +31,6 @@ public class PlayerUI : MonoBehaviour
 	{
 		_staminaSlider.value = stamina;
 	}
+
+
 }

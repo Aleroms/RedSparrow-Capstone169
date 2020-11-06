@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class GunController : MonoBehaviour
 {
     [SerializeField]
@@ -31,6 +31,11 @@ public class GunController : MonoBehaviour
 
     public bool isEquipped;//Is the gun currently equiped?
     public int ammoCount;// How many bullets does the gun have right now
+    public Sprite reticleGun;
+    public Image reticlePlayer;
+    public Sprite reticleDefault;
+    public Text pickupPrompt;
+    public float pickupPromptTimer;
 
     void Start()
     {
@@ -45,7 +50,18 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
+        if (pickupPromptTimer > 0) // remove prompt if no nearby weapons found for a small duration
+        {
+            pickupPromptTimer -= Time.deltaTime;
+            if (pickupPromptTimer <= 0)
+                pickupPrompt.text = ""; 
+        }
         Vector3 distToPlayer = player.transform.position - transform.position;//Every update, we wanna know how far away the player is to the gun
+        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && !player.GetComponent<PlayerStatTrack>().getHasGun()) // pickup prompt
+        {
+            pickupPrompt.text = "Press " + "<color=#CCCC00>" + player.GetComponent<PlayerKeyBindings>().getPickUp() + "</color>" + " to pickup " + name + ".";
+            pickupPromptTimer = 0.0625f;
+        }
         //If the gun is not equiped, and the player is close enough to equip it, and the player presses the key to equip the gun, AND the player isn't already holding a gun
         if (!isEquipped && distToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getPickUp()) && !player.GetComponent<PlayerStatTrack>().getHasGun()) {
             PickUp();//Then pick up the gun
@@ -74,6 +90,8 @@ public class GunController : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
+        GetComponent<BoxCollider>().enabled = false; // disable weapon collision
+        reticlePlayer.GetComponent<Image>().sprite = reticleGun; // change reticle to match gun type
     }
 
     //When we drop a gun
@@ -82,8 +100,10 @@ public class GunController : MonoBehaviour
         setThingsFalse();//Some things are set to false
         transform.SetParent(null);//The hand is no longer the parent
         //And we add forces to toss the gun away
+        GetComponent<BoxCollider>().enabled = true; // enable weapon collision
         gunRB.AddForce(playerCamera.forward * dropForwardForce, ForceMode.Impulse);
         gunRB.AddForce(playerCamera.forward * dropUpwardForce, ForceMode.Impulse);
+        reticlePlayer.GetComponent<Image>().sprite = reticleDefault; // change reticle to default
     }
 
     //Here is an explaination of things we set to false
@@ -111,11 +131,11 @@ public class GunController : MonoBehaviour
         player.GetComponent<PlayerStatTrack>().setHasGun(true);
         gunRB.isKinematic = true;
         gunBC.isTrigger = true;
-        if (hitScanScript != null)
+        if (hitScanScript != null && ammoCount > 0) // fixed bug where you can fire once after picking up an empty ammo weapon
         {
             hitScanScript.enabled = true;
         }
-        else if (bulletScript != null)
+        else if (bulletScript != null && ammoCount > 0)
         {
             bulletScript.enabled = true;
         }
