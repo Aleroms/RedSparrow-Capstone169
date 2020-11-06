@@ -9,8 +9,7 @@ public class PlayerUI : MonoBehaviour
 	private Slider _healthSlider;
 	[SerializeField]
 	private Slider _staminaSlider;
-	public Text pickupPrompt;//weaponUI should not be here. This should only be playerUI
-	public float pickupPromptTimer;//same with this
+
 
 	
 	
@@ -33,20 +32,5 @@ public class PlayerUI : MonoBehaviour
 		_staminaSlider.value = stamina;
 	}
 
-	private void Update()
-	{
-		if (pickupPromptTimer > 0)
-		{
-			pickupPromptTimer -= Time.deltaTime;
-			if (pickupPromptTimer <= 0)
-			{
-				pickupPromptTimer = 0;
-				//pickupPrompt.enabled = false;
-				pickupPrompt.gameObject.SetActive(false);
-			}
-				
-		}
-			
 
-	}
 }
