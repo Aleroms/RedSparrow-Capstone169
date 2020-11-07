@@ -5,25 +5,19 @@ using UnityEngine;
 public class Deadzone : MonoBehaviour
 {
 	public Transform respawnPt;
-    
+	private CheckpointManager _checkPointManager;
+
+	private void Start()
+	{
+		_checkPointManager = GameObject.Find("CheckpointManager").GetComponent<CheckpointManager>();
+		if (_checkPointManager == null) Debug.LogError("manager is null");
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.tag == "Player")
 		{
-			CharacterController cc = other.GetComponent<CharacterController>();
-
-			if (cc != null)
-				cc.enabled = false;
-
-			other.transform.position = respawnPt.position;
-			StartCoroutine(CCEnableRoutine(cc));
-		}
-		IEnumerator CCEnableRoutine(CharacterController cc)
-		{
-			yield return new WaitForSeconds(0.25f);
-
-			if (cc != null)
-				cc.enabled = true;
+			_checkPointManager.DeadZone();
 		}
 	}
 }
