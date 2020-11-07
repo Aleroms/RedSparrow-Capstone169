@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class Deadzone : MonoBehaviour
 {
@@ -18,12 +18,16 @@ public class Deadzone : MonoBehaviour
 			other.transform.position = respawnPt.position;
 			StartCoroutine(CCEnableRoutine(cc));
 		}
-		IEnumerator CCEnableRoutine(CharacterController cc)
-		{
-			yield return new WaitForSeconds(0.25f);
+        else
+        {
+            Destroy(other.gameObject);//If the object that falls into the deadzone is anything other than a player, it gets destroyed
+        }
+        IEnumerator CCEnableRoutine(CharacterController cc)
+        {
+            yield return new WaitForSeconds(0.25f);
 
-			if (cc != null)
-				cc.enabled = true;
-		}
+            if (cc != null)
+                cc.enabled = true;
+        }
 	}
 }
