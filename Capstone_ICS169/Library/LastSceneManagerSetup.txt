@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/AnotherScene.unity
+=======
+- path: Assets/Scenes/Prototype_Levels/ProtoLevel_1.unity
+>>>>>>> 20d2b6ab04699e150135fbf94bd69c4d597afaa7
   isLoaded: 1
   isActive: 1
   isSubScene: 0
