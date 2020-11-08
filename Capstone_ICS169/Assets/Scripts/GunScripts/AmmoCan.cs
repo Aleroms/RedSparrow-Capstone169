@@ -9,19 +9,20 @@ public class AmmoCan : MonoBehaviour
     [SerializeField]
     private int ammoType;//Which ammo type is in the ammo can
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player") {
+        if (other.tag == "Player") {
+            print("ControllerColliderHit!");
             if (ammoType == 1)
             {
-                collision.gameObject.GetComponent<PlayerStatTrack>().setLittleAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLittleAmmoPool() + ammoHeld);
+                other.GetComponent<PlayerStatTrack>().setLittleAmmoPool(other.GetComponent<PlayerStatTrack>().getLittleAmmoPool() + ammoHeld);
             }
             else if (ammoType == 2)
             {
-                collision.gameObject.GetComponent<PlayerStatTrack>().setLargeAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLargeAmmoPool() + ammoHeld);
+                other.GetComponent<PlayerStatTrack>().setLargeAmmoPool(other.GetComponent<PlayerStatTrack>().getLargeAmmoPool() + ammoHeld);
             }
             else {
-                collision.gameObject.GetComponent<PlayerStatTrack>().setLaserAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLaserAmmoPool() + ammoHeld);
+                other.GetComponent<PlayerStatTrack>().setLaserAmmoPool(other.GetComponent<PlayerStatTrack>().getLaserAmmoPool() + ammoHeld);
             }
             Destroy(gameObject);
         }

@@ -180,13 +180,16 @@ public class GunController : MonoBehaviour
     public void decreaseAmmo() {
         PammoCount -= 1;// ammo needs to be decreased
         //If we run out of ammo, we cant shoot
+        //If we can switch ammo types then we switch automatically
         if (PammoCount <= 0) {
             if (hitScanScript != null)
             {
+                SwitchFireType();
                 hitScanScript.enabled = false;
             }
-            if (bulletScript != null)
+            else if (bulletScript != null)
             {
+                SwitchFireType();
                 bulletScript.enabled = false;
             }
         }
@@ -256,5 +259,16 @@ public class GunController : MonoBehaviour
                 bulletScript.enabled = true;
             }
         }
+    }
+
+    //returns the guns current gun type
+    public int getGunType()
+    {
+        return PgunType;
+    }
+
+    public bool canSwitchType()
+    {
+        return (hitScanScript != null && bulletScript != null);
     }
 }

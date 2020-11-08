@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/DeveloperLevels/Santi_Test.unity
+=======
+- path: Assets/Scenes/Prototype_Levels/ProtoLevel_1.unity
+>>>>>>> 58b1e7b5dad6c950196c99449d995d704f5191a7
   isLoaded: 1
   isActive: 1
   isSubScene: 0
