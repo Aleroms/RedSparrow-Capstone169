@@ -5,13 +5,14 @@ using UnityEngine;
 public class AmmoCan : MonoBehaviour
 {
     [SerializeField]
-    private int ammoHeld;
+    private int ammoHeld;//How much ammo is in the ammo can
     [SerializeField]
-    private int ammoType;
+    private int ammoType;//Which ammo type is in the ammo can
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
+            print("ControllerColliderHit!");
             if (ammoType == 1)
             {
                 other.GetComponent<PlayerStatTrack>().setLittleAmmoPool(other.GetComponent<PlayerStatTrack>().getLittleAmmoPool() + ammoHeld);

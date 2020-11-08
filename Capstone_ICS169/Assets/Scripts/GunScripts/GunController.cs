@@ -30,7 +30,8 @@ public class GunController : MonoBehaviour
     private int Sguntype;//This keeps track of the secondary (S) fire mode's bullet type
 
     public bool isEquipped;//Is the gun currently equiped?
-    public int ammoCount;// How many bullets does the gun have right now
+    public int PammoCount;// How many bullets does the gun have right now
+    public int SammoCount;//If the gun has a second type, how mauch ammo is in that magazine? This Var will tell you
     public Sprite reticleGun;
     public Image reticlePlayer;
     public Sprite reticleDefault;
@@ -39,7 +40,9 @@ public class GunController : MonoBehaviour
 
     void Start()
     {
-        ammoCount = Random.Range(0, maxAmmoCount+1);// First, we will give the gun a random amount of ammo (Ammo cant exceed the max set earlier)
+        PammoCount = Random.Range(0, maxAmmoCount+1);// First, we will give the gun a random amount of ammo (Ammo cant exceed the max set earlier)
+        SammoCount = Random.Range(0, maxAmmoCount + 1);
+
         if (!isEquipped) { // If the gun is not equiped, certain things must be set false, they will be explained below
             setThingsFalse();
         }
@@ -131,11 +134,11 @@ public class GunController : MonoBehaviour
         player.GetComponent<PlayerStatTrack>().setHasGun(true);
         gunRB.isKinematic = true;
         gunBC.isTrigger = true;
-        if (hitScanScript != null && ammoCount > 0) // fixed bug where you can fire once after picking up an empty ammo weapon
+        if (hitScanScript != null && PammoCount > 0) // fixed bug where you can fire once after picking up an empty ammo weapon
         {
             hitScanScript.enabled = true;
         }
-        else if (bulletScript != null && ammoCount > 0)
+        else if (bulletScript != null && PammoCount > 0)
         {
             bulletScript.enabled = true;
         }
@@ -155,23 +158,38 @@ public class GunController : MonoBehaviour
                 bulletScript.enabled = false;
             }
             //Then we change the ammo type being fired
-            int temp = PgunType;
-            PgunType = Sguntype;
-            Sguntype = temp;
+            SwitchAmmoType();
+            //and the ammo count
+            SwitchAmmoCount();
         }
     }
+    void SwitchAmmoType() {
+        int temp = PgunType;
+        PgunType = Sguntype;
+        Sguntype = temp;
+    }
+
+    void SwitchAmmoCount() {
+        int temp = PammoCount;
+        PammoCount = SammoCount;
+        SammoCount = temp;
+    }
+
 
     //Every time we shoot...
     public void decreaseAmmo() {
-        ammoCount -= 1;// ammo needs to be decreased
+        PammoCount -= 1;// ammo needs to be decreased
         //If we run out of ammo, we cant shoot
-        if (ammoCount <= 0) {
+        //If we can switch ammo types then we switch automatically
+        if (PammoCount <= 0) {
             if (hitScanScript != null)
             {
+                SwitchFireType();
                 hitScanScript.enabled = false;
             }
-            if (bulletScript != null)
+            else if (bulletScript != null)
             {
+                SwitchFireType();
                 bulletScript.enabled = false;
             }
         }
@@ -179,12 +197,12 @@ public class GunController : MonoBehaviour
 
     //This might be used for ammo ui so I put this here
     public int getAmmoCount() {
-        return ammoCount;
+        return PammoCount;
     }
 
     //When you reload///
     void reload() {
-        int ammoNeeded = maxAmmoCount - ammoCount;//First we need to know how much ammo we need
+        int ammoNeeded = maxAmmoCount - PammoCount;//First we need to know how much ammo we need
         int ammoGotten = 0;
         //Next we figure out which type of ammo we need
         if (PgunType == 1)// if 1, we need little bullets
@@ -229,9 +247,9 @@ public class GunController : MonoBehaviour
                 player.GetComponent<PlayerStatTrack>().setLaserAmmoPool(player.GetComponent<PlayerStatTrack>().getLaserAmmoPool() - ammoGotten);
             }
         }
-        ammoCount += ammoGotten;//Finally, we add the ammo we got to the ammo count
+        PammoCount += ammoGotten;//Finally, we add the ammo we got to the ammo count
         //If we actually added ammo to the gun then the gun can shoot again 
-        if (ammoCount > 0) {
+        if (PammoCount > 0) {
             if (hitScanScript != null && PgunType == 3)
             {
                 hitScanScript.enabled = true;
@@ -241,5 +259,16 @@ public class GunController : MonoBehaviour
                 bulletScript.enabled = true;
             }
         }
+    }
+
+    //returns the guns current gun type
+    public int getGunType()
+    {
+        return PgunType;
+    }
+
+    public bool canSwitchType()
+    {
+        return (hitScanScript != null && bulletScript != null);
     }
 }
