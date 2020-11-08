@@ -242,4 +242,15 @@ public class GunController : MonoBehaviour
             }
         }
     }
+
+    //returns the guns current gun type
+    public int getGunType()
+    {
+        return PgunType;
+    }
+
+    public bool canSwitchType()
+    {
+        return (hitScanScript != null && bulletScript != null);
+    }
 }
