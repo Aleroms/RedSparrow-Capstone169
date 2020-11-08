@@ -20647,8 +20647,6 @@ Transform:
   m_Father: {fileID: 1516700199}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &819335797
 GameObject:
   m_ObjectHideFlags: 0
@@ -20706,7 +20704,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> 20d2b6ab04699e150135fbf94bd69c4d597afaa7
 --- !u!43 &853894842
 Mesh:
   m_ObjectHideFlags: 0
