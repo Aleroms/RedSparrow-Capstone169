@@ -40,5 +40,9 @@ public class AmmoUI : MonoBehaviour
                 ammoText.text = gun.getAmmoCount() + "/" + playerStatTrack.getLaserAmmoPool();
             }
         }
+        else
+        {
+            ammoText.text = "--/--";
+        }
     }
 }
