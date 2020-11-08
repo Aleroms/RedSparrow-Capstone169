@@ -5,23 +5,23 @@ using UnityEngine;
 public class AmmoCan : MonoBehaviour
 {
     [SerializeField]
-    private int ammoHeld;
+    private int ammoHeld;//How much ammo is in the ammo can
     [SerializeField]
-    private int ammoType;
+    private int ammoType;//Which ammo type is in the ammo can
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Player") {
+        if (collision.gameObject.tag == "Player") {
             if (ammoType == 1)
             {
-                other.GetComponent<PlayerStatTrack>().setLittleAmmoPool(other.GetComponent<PlayerStatTrack>().getLittleAmmoPool() + ammoHeld);
+                collision.gameObject.GetComponent<PlayerStatTrack>().setLittleAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLittleAmmoPool() + ammoHeld);
             }
             else if (ammoType == 2)
             {
-                other.GetComponent<PlayerStatTrack>().setLargeAmmoPool(other.GetComponent<PlayerStatTrack>().getLargeAmmoPool() + ammoHeld);
+                collision.gameObject.GetComponent<PlayerStatTrack>().setLargeAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLargeAmmoPool() + ammoHeld);
             }
             else {
-                other.GetComponent<PlayerStatTrack>().setLaserAmmoPool(other.GetComponent<PlayerStatTrack>().getLaserAmmoPool() + ammoHeld);
+                collision.gameObject.GetComponent<PlayerStatTrack>().setLaserAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLaserAmmoPool() + ammoHeld);
             }
             Destroy(gameObject);
         }
