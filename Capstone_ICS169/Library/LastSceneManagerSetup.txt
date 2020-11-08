@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Menus/MainMenu.unity
-=======
 - path: Assets/Scenes/Prototype_Levels/ProtoLevel_0.unity
->>>>>>> 0e321ae8b7f02920f9e5b496bc45a6ea5a048e63
   isLoaded: 1
   isActive: 1
   isSubScene: 0
