@@ -12,6 +12,7 @@ public class AmmoCan : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player") {
+            print("ControllerColliderHit!");
             if (ammoType == 1)
             {
                 collision.gameObject.GetComponent<PlayerStatTrack>().setLittleAmmoPool(collision.gameObject.GetComponent<PlayerStatTrack>().getLittleAmmoPool() + ammoHeld);

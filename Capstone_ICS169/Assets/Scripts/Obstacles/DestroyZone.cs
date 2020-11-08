@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-
+//Original Deadzone Script
 public class DestroyZone : MonoBehaviour
 {
 	public Transform respawnPt;
