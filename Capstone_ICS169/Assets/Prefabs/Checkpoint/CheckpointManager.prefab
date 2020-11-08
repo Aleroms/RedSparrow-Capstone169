@@ -43,5 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff97405dd760c704194b24bf441e45f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sectionCheckpoint:
-  - {fileID: 0}
+  _sectionCheckpoint: []

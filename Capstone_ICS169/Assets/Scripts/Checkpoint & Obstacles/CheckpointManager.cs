@@ -8,12 +8,14 @@ public class CheckpointManager : MonoBehaviour
     
 	[SerializeField]
 	private List<GameObject> _sectionCheckpoint;
-
+	private int _sectionIndex = 0;
     private Transform _currentCheckpoint;
 	private GameObject _previousCheckpoint;
 
 	private GameObject _player;
 	private CharacterController cc;
+
+	private bool _secondCheckpointVisited = false;
 	//private Checkpoint _checkpointScript;
 	private void Start()
 	{
@@ -33,32 +35,38 @@ public class CheckpointManager : MonoBehaviour
 		if(_sectionCheckpoint != null)
 		{
 			_currentCheckpoint = _sectionCheckpoint[0].transform;
+			_previousCheckpoint = _sectionCheckpoint[0];
 		}
-		_previousCheckpoint = null;
+		//_previousCheckpoint = null;
 		
 	}
 	private void TurnOffCheckpoint()
 	{
 		//"turns off" by changing color to red
-		Renderer render = _previousCheckpoint.GetComponent<Renderer>();
+		//Renderer render = _previousCheckpoint.GetComponent<Renderer>();
+		MeshRenderer render = _previousCheckpoint.GetComponent<MeshRenderer>();
 
-		if(render != null)
+		if (render != null)
 		{
-			Material mat = _previousCheckpoint.GetComponent<Renderer>().material;
-			mat.color = new Color(1f, 0f, 0f);
+			render.material.color = new Color(1f, 0f, 0f);
+			//Material mat = _previousCheckpoint.GetComponent<Renderer>().material;
+			//mat.color = new Color(1f, 0f, 0f);
 		}
+		else
+			Debug.LogError("render is null");
 			
 		
 	}
 	public void UpdateCheckpoint(Transform newCheckpoint)
 	{
 		//first checkpoint
-		if(_previousCheckpoint != null)
+		if(_secondCheckpointVisited)
 			TurnOffCheckpoint();
 		
 		_previousCheckpoint = _currentCheckpoint.gameObject;
 
 		_currentCheckpoint = newCheckpoint;
+		_secondCheckpointVisited = true;
 	}
 	public void DeadZone()
 	{
@@ -79,9 +87,16 @@ public class CheckpointManager : MonoBehaviour
 				cc.enabled = true;
 		}
 	}
-	public void SetSection(GameObject section)
+	public void AddSection(GameObject section)
 	{	//avoid adding first section
 		if(section.name != _sectionCheckpoint[0].name)
 			_sectionCheckpoint.Add(section);
+	}//might want to give designer power to set sections
+	public void ExitSection()
+	{
+		_sectionIndex++;
+		_currentCheckpoint = _sectionCheckpoint[_sectionIndex].transform;
+		_previousCheckpoint = _currentCheckpoint.gameObject;
+		//idk what i wanna do here
 	}
 }

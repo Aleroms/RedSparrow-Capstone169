@@ -31,11 +31,12 @@ public class Checkpoint : MonoBehaviour
 				_checkPointManager.UpdateCheckpoint(transform);
 				_trigger = true;
 			}
-
+			/*
 			if(_SectionCheckpoint == true)
 			{
 				_checkPointManager.SetSection(gameObject);
 			}
+			*/
 		}
 		
 	}

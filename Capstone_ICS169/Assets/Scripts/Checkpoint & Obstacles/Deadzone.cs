@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Deadzone : MonoBehaviour
 {
-	public Transform respawnPt;
+	//public Transform respawnPt;
 	private CheckpointManager _checkPointManager;
 
 	private void Start()
