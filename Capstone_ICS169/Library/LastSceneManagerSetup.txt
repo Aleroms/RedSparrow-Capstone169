@@ -1,13 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/DeveloperLevels/BrianScene.unity
-=======
-<<<<<<< HEAD
-- path: Assets/Scenes/DeveloperLevels/Santi_Test.unity
-=======
-- path: Assets/Scenes/Prototype_Levels/ProtoLevel_1.unity
->>>>>>> 58b1e7b5dad6c950196c99449d995d704f5191a7
->>>>>>> 4797e375b1fd50d5682f69d2ea15bac23c00fe72
+- path: Assets/Scenes/DeveloperLevels/danielTemp.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
