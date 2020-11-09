@@ -66,12 +66,6 @@ public class AI : MonoBehaviour
     {
         if (isOn) // enable AI
         {
-            if (!willPatrol)
-            {
-                willAttack = true;
-                willMove = true;
-                willTurn = true;
-            }
             if (transform.position.y < 0) // fell off map
             {
                 print(name + " has been deleted since it fell through ground.");
