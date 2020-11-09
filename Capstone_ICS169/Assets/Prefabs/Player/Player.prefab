@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 436614520}
   - component: {fileID: 436614522}
   - component: {fileID: 436614521}
-  - component: {fileID: 436614527}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -227,7 +226,7 @@ MonoBehaviour:
   _iscrouching: 0
   _issprinting: 0
   _speedOriginal: 0
-  _speed: 8
+  _speed: 5
   _gravity: 39.28
   _jumpHeight: 2
   _crouchHeight: 0.8
@@ -358,20 +357,6 @@ MonoBehaviour:
     largeAmmoPool: 0
     laserAmmoPool: 0
     hasGun: 0
---- !u!114 &436614527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916943055000976211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52c1d5561242fb84c820e050048252e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthSlider: {fileID: 0}
-  _staminaSlider: {fileID: 0}
 --- !u!1 &1916943055603452685
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908acf7d32eb8ff41b77b95ed83af897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivity: 100
+  _sensitivity: 250
   _player: {fileID: 1916943055000976223}
 --- !u!81 &3200564653356960418
 AudioListener:
