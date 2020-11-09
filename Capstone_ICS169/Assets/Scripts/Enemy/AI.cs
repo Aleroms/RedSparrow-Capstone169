@@ -7,35 +7,35 @@ public class AI : MonoBehaviour
     public int type; // feel free to change these in inspector
     public bool isOn = true, willMove = true, willAttack = true, willTurn = true, willPatrol;
     public float duration;
-    public Vector3 patrolEnd;
-    public GameObject player, target; // don't change these and below variables
+    public GameObject player, target, bullet; // don't change these and below variables
     public Transform position;
     public float randomTime, yVel, randomX, randomZ, currentDuration, speed;
     public Rigidbody rb;
-    public float distance, cooldown, droneY;
+    public float distance, cooldown, droneY, jumpCooldown, jumpDuration;
     public int damage, random;
     public int[] damageArray = new int[4];
     public GameObject[] model = new GameObject[4];
-    public GameObject bullet;
-    public Vector3 patrolStart;
+    public GameObject bulletPrefab;
+    public bool canJump = true, fireFromRight;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        //target = gameObject.transform.GetChild(0);
-        //rb.velocity = new Vector3(0, -2, 0);
+        player = GameObject.Find("Player"); // set player
         damageArray[0] = 10; // set damage values for ai
         position = player.transform;
         model[type].SetActive(true); // set model and damage to chosen type
         damage = damageArray[type];
-        this.GetComponent<MeshRenderer>().enabled = false;
-        if (type == 0) // update collision to match model
+        this.GetComponent<MeshRenderer>().enabled = false; // disable block placeholder
+        if (type == 0) // update collision to match model and other specific type attributes
         {
             this.gameObject.GetComponent<BoxCollider>().center = new Vector3(0, 0.125f, 0);
             this.gameObject.GetComponent<BoxCollider>().size = new Vector3(1.4f, 0.5f, 0.5f);
+            random = Random.Range(0, 2);
+            if (random == 0)
+                canJump = false;
         }
-            
+
         else if (type == 1)
         {
             this.gameObject.GetComponent<BoxCollider>().center = new Vector3(0, 0.1f, 0);
@@ -49,16 +49,14 @@ public class AI : MonoBehaviour
         }
         if (willPatrol)
         {
-            patrolStart = transform.position;
-            //if (patrolEnd == Vector3.zero) // set nearby random patrol point if none is set
-                //patrolEnd = new Vector3(transform.position.x + Random.Range(-8f, 8f), transform.position.y, transform.position.z + Random.Range(-8, 8f));
+            target.SetActive(true);
             if (duration == 0)
                 duration = Random.Range(2.5f, 5f);
-            target.transform.position = patrolEnd;
             willAttack = false;
             willMove = false;
             willTurn = false;
             GetComponent<Rigidbody>().freezeRotation = true;
+            currentDuration = duration;
 
         }
     }
@@ -68,6 +66,12 @@ public class AI : MonoBehaviour
     {
         if (isOn) // enable AI
         {
+            if (!willPatrol)
+            {
+                willAttack = true;
+                willMove = true;
+                willTurn = true;
+            }
             if (transform.position.y < 0) // fell off map
             {
                 print(name + " has been deleted since it fell through ground.");
@@ -75,54 +79,65 @@ public class AI : MonoBehaviour
             }
             distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
             if (willTurn) // look at target
-                transform.LookAt(player.transform.position);
+                if (type == 1) // only flier can tilt in y-axis
+                    transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+                else
+                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             if (willMove) // move to target
             {
-                //yVel = rb.velocity.y;
-                //random = Random.Range(-1, 1);
                 if (type == 0) // spider
                 {
-                    if (distance > 1.5f) // move closer if too far, else stops next to player, avoids humping
-                        rb.velocity = transform.rotation * Vector3.forward * 5;
+                    speed = 5;
+                    if (distance > 1.5f) // move closer if too far, else stops next to player
+                        if (jumpDuration <= 0)
+                            rb.velocity = transform.rotation * Vector3.forward * speed;
+                        else
+                            rb.velocity = transform.rotation * new Vector3(0, 0, 3) * speed;
                     else
                         rb.velocity = Vector3.zero;
-                    rb.velocity = new Vector3(rb.velocity.x, -1f, rb.velocity.z); // simulated gravity
+                    if (canJump && distance > 4 && jumpCooldown <= 0)
+                    {
+                        yVel = transform.position.y;
+                        jumpDuration = 0.5f;
+                        jumpCooldown = Random.Range(3f, 6f);
+                        print("leap attack");
+                    }
                 }
                 else if (type == 1) // drone
                 {
                     if (randomTime <= 0) // move to random position
                     {
+                        speed = 2f;
                         randomTime = Random.Range(0.5f, 2f);
-                        droneY = Random.Range(-2f, 2f);
-                        if (this.transform.position.y < 2) // fly higher if too low
-                            droneY = Random.Range(0, 2f);
-                        if (this.transform.position.y > 6) // vice versa
-                            droneY = Random.Range(-2f, 0);
+                        droneY = Random.Range(-speed, speed);
+                        if (this.transform.position.y < 4) // fly higher if too low
+                            droneY = Random.Range(0, speed);
+                        else if (this.transform.position.y > 8) // vice versa
+                            droneY = Random.Range(-speed, 0);
                         if (distance < 8) // strafe if close by, else move closer
-                            rb.velocity = new Vector3(Random.Range(-2f, 2f), droneY, Random.Range(-2f, 2f));
+                            rb.velocity = new Vector3(Random.Range(-speed, speed), droneY, Random.Range(-speed, speed));
                         else
-                            rb.velocity = transform.rotation * Vector3.forward * 3;
+                            rb.velocity = transform.rotation * Vector3.forward * speed;
                     }
                     randomTime -= Time.deltaTime;
                 }
-                else if (type == 2) // racer (this is weird shit)
+                else if (type == 2) // racer
                 {
                     if (randomTime <= 0) // move to random position
                     {
+                        speed = 3;
                         randomX = Random.Range(-1, 2);
                         randomZ = Random.Range(-1, 2);
                         randomTime = Random.Range(2f, 4f);
+                        if (randomX != 0 && randomZ != 0)
+                            speed = Mathf.Sqrt(Mathf.Pow(speed, 2) / 2);
                     }
                     randomTime -= Time.deltaTime;
                     if (distance < 8) // strafe if close by, else move closer
-                        rb.velocity = transform.rotation * new Vector3(randomX * 3, 0, randomZ * 3);
+                        rb.velocity = transform.rotation * new Vector3(randomX * speed, 0, randomZ * speed);
                     else
                         rb.velocity = transform.rotation * Vector3.forward * 3;
-                    rb.velocity = new Vector3(rb.velocity.x, -1f, rb.velocity.z); // simulated gravity
-
                 }
-                //print(random);
-                //print(rb.velocity);
             }
             if (willAttack && cooldown <= 0) // attack
             {
@@ -142,32 +157,15 @@ public class AI : MonoBehaviour
                     StartCoroutine(Attack());
                 }
             }
-            if (willPatrol) // patrol to a point continously
+            if (willPatrol) // move forward for duration seconds, then turns around
             {
-                
-                if (currentDuration <= 0)
+                if (currentDuration <= 0) // when it reaches timer
                 {
                     currentDuration = duration;
-                    transform.localRotation *= Quaternion.Euler(0, 180, 0);
-                    //transform.rotation = 
+                    transform.localRotation *= Quaternion.Euler(0, 180, 0); // flip y-rotation by 180
                 }
-                    
                 rb.velocity = transform.rotation * Vector3.forward * 3; // move forward
                 currentDuration -= Time.deltaTime;
-                
-                /*
-                target.transform.position = patrolEnd;
-                transform.LookAt(target.transform); // look at PatrolEnd
-                rb.velocity = transform.rotation * Vector3.forward * 3; // move forward
-                distance = Vector3.Distance(transform.position, target.transform.position); // check distance between this and patrolEnd
-                if (distance <= 0.1f) // moves to opposite side
-                {
-                    transform.position = patrolEnd;
-                    patrolEnd = patrolStart;
-                    patrolStart = transform.position;
-                }
-                */
-                
             }
         }
         else // disable AI
@@ -175,9 +173,14 @@ public class AI : MonoBehaviour
             willMove = false;
             willAttack = false;
             willTurn = false;
+            rb.velocity = Vector3.zero;
         }
         if (cooldown > 0)
             cooldown -= Time.deltaTime;
+        if (jumpCooldown > 0)
+            jumpCooldown -= Time.deltaTime;
+        if (jumpDuration > 0)
+            jumpDuration -= Time.deltaTime;
     }
     IEnumerator Attack()
     {
@@ -195,13 +198,18 @@ public class AI : MonoBehaviour
         }
         else if (type == 1)
         {
-            GameObject bullet = Instantiate(this.bullet, transform.position + transform.rotation * Vector3.forward, this.transform.rotation);
+            bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * Vector3.forward, this.transform.rotation);
         }
         else if (type == 2)
         {
             for (int i = 0; i < 3; ++i) // 3 shot burst
             {
-                GameObject bullet = Instantiate(this.bullet, transform.position + transform.rotation * new Vector3(0, 0.45f, 1), this.transform.rotation);
+                if (!fireFromRight)
+                    bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(0.2f, 0.9f, 1), this.transform.rotation);
+                else
+                    bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(-0.2f, 0.9f, 1), this.transform.rotation);
+                fireFromRight = !fireFromRight;
+                bullet.transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
                 yield return new WaitForSeconds(0.5f);
             }
         }
