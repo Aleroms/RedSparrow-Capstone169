@@ -1123,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1309173214503234209
 Transform:
   m_ObjectHideFlags: 0
@@ -1569,7 +1569,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1596,6 +1596,7 @@ MonoBehaviour:
   patrolEnd: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   target: {fileID: 3919258372585623121}
+  bullet: {fileID: 0}
   position: {fileID: 0}
   randomTime: 0
   yVel: 0
@@ -1607,6 +1608,8 @@ MonoBehaviour:
   distance: 0
   cooldown: 0
   droneY: 0
+  jumpCooldown: 0
+  jumpDuration: 0
   damage: 10
   random: 0
   damageArray: 00000000000000000000000000000000
@@ -1615,8 +1618,11 @@ MonoBehaviour:
   - {fileID: 1269611904118157425}
   - {fileID: 244788771291016206}
   - {fileID: 0}
-  bullet: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0, type: 3}
+  bulletPrefab: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0,
+    type: 3}
   patrolStart: {x: 0, y: 0, z: 0}
+  canJump: 1
+  fireFromRight: 0
 --- !u!1 &5447632300241471991
 GameObject:
   m_ObjectHideFlags: 0
