@@ -21,4 +21,10 @@ public class UIManager : MonoBehaviour
 	{
 		SceneManager.LoadScene(name);
 	}
+	public void GameOver()
+	{
+		//set game over panel on
+		//should have a button that quits
+		//should have button that takes to main menu
+	}
 }
