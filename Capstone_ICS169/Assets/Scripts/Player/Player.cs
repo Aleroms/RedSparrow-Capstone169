@@ -50,10 +50,11 @@ public class Player : MonoBehaviour
 	private Vector3 _velocity;
 
 	private PlayerUI _pUI;
-
+	private GameManager _gm;
 
 	void Start()
 	{
+
 		_issprinting = false;
 		_speedOriginal = _speed;
 		_stamina = _maxStamina;
@@ -61,8 +62,10 @@ public class Player : MonoBehaviour
 
 		_controller = GetComponent<CharacterController>();
 		_pUI = GameObject.Find("Canvas").GetComponent<PlayerUI>();
+		_gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
 		if (_controller == null) Debug.LogError("controller is null");
+		if (_gm == null) Debug.LogError("gamemanager is null");
 		if (_pUI == null) 
 			Debug.LogError("PlayerUI is null");
 		else
@@ -108,7 +111,7 @@ public class Player : MonoBehaviour
 		_pUI.HealthBar(_health);
 
         if (_health < 0) {
-
+			_gm.OnPlayerDeath();
         }
 			
 	}

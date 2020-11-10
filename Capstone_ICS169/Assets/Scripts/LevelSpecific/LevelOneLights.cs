@@ -8,11 +8,15 @@ public class LevelOneLights : MonoBehaviour
     private GameObject DomeBridge;
     [SerializeField]
     private GameObject DomePlatform;
+
+    private GameManager _gm;
     // Start is called before the first frame update
 
     // Update is called once per frame
     private void Start()
     {
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (_gm == null) Debug.LogError("Gm null");
         if(DomePlatform.activeSelf)
         {
             DomePlatform.SetActive(false);
@@ -28,6 +32,13 @@ public class LevelOneLights : MonoBehaviour
         {
             DomeBridge.SetActive(false);
             DomePlatform.SetActive(true);
+
+            StartCoroutine(EndCoroutine());
         }
     }
+    IEnumerator EndCoroutine()
+	{
+        yield return new WaitForSeconds(60f);
+        _gm.OnPlayerDeath();
+	}
 }

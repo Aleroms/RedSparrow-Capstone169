@@ -16,6 +16,12 @@ public class CheckpointManager : MonoBehaviour
 	private CharacterController cc;
 
 	private bool _secondCheckpointVisited = false;
+	[SerializeField]
+	private bool _sectionA;
+	[SerializeField]
+	private bool _sectionB;
+	[SerializeField]
+	private bool _sectionC;
 	//private Checkpoint _checkpointScript;
 	private void Start()
 	{
@@ -92,11 +98,28 @@ public class CheckpointManager : MonoBehaviour
 		if(section.name != _sectionCheckpoint[0].name)
 			_sectionCheckpoint.Add(section);
 	}//might want to give designer power to set sections
-	public void ExitSection()
+	public void EnterSection(string sectionName)
 	{
+		if (sectionName == "Section A")
+			_sectionA = true;
+		else if (sectionName == "Section B")
+			_sectionB = true;
+		else if (sectionName == "Section C")
+			_sectionC = true;
+	}
+	public void ExitSection(string sectionName)
+	{
+		if (sectionName == "Section A")
+			_sectionA = false;
+		else if (sectionName == "Section B")
+			_sectionB = false;
+		else if (sectionName == "Section C")
+			_sectionC = false;
+		/*
 		_sectionIndex++;
 		_currentCheckpoint = _sectionCheckpoint[_sectionIndex].transform;
 		_previousCheckpoint = _currentCheckpoint.gameObject;
 		//idk what i wanna do here
+		*/
 	}
 }

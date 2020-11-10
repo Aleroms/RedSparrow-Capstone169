@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerDeath()
 	{
+        //freezes time
+        //Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
         _UIManager.GameOver();
         //set some UI up to say "GAME OVER"
         //freeze time
@@ -21,9 +24,5 @@ public class GameManager : MonoBehaviour
         if (_UIManager == null) Debug.LogError("Canvas not found");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

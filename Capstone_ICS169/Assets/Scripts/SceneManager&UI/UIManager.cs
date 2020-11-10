@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void GameOver()
 	{
+		SceneManager.LoadScene("Credits");
 		//set game over panel on
 		//should have a button that quits
 		//should have button that takes to main menu
