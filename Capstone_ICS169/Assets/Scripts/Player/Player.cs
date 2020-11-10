@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
 
 	private PlayerUI _pUI;
 
+
 	void Start()
 	{
 		_issprinting = false;
@@ -105,6 +106,9 @@ public class Player : MonoBehaviour
 	{
 		_health -= damage;
 		_pUI.HealthBar(_health);
+
+		if(_health < 0)
+			
 	}
 
 	void Movement()//function works properly when proper layerMask is set to ground. 
