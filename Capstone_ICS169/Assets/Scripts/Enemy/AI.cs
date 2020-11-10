@@ -66,11 +66,6 @@ public class AI : MonoBehaviour
     {
         if (isOn) // enable AI
         {
-            if (transform.position.y < 0) // fell off map
-            {
-                print(name + " has been deleted since it fell through ground.");
-                Destroy(gameObject);
-            }
             distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
             if (willTurn) // look at target
                 if (type == 1) // only flier can tilt in y-axis
