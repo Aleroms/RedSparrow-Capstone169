@@ -9,6 +9,7 @@ public class Podium : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		_bridge.SetActive(true);
+		if(other.tag == "Player")
+			_bridge.SetActive(true);
 	}
 }
