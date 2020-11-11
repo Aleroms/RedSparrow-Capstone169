@@ -17,16 +17,20 @@ public class AI : MonoBehaviour
     public GameObject[] model = new GameObject[4];
     public GameObject bulletPrefab;
     public bool canJump = true, fireFromRight;
+    public Vector3 formerRotation;
+    public Mesh[] meshArray = new Mesh[4];
 
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<MeshCollider>().sharedMesh = meshArray[type];
+        GetComponent<MeshFilter>().sharedMesh = meshArray[type];
         player = GameObject.Find("Player"); // set player
         damageArray[0] = 10; // set damage values for ai
         position = player.transform;
-        model[type].SetActive(true); // set model and damage to chosen type
+        //model[type].SetActive(true); // set model and damage to chosen type
         damage = damageArray[type];
-        this.GetComponent<MeshRenderer>().enabled = false; // disable block placeholder
+        //this.GetComponent<MeshRenderer>().enabled = false; // disable block placeholder
         if (type == 0) // update collision to match model and other specific type attributes
         {
             this.gameObject.GetComponent<BoxCollider>().center = new Vector3(0, 0.125f, 0);
@@ -52,9 +56,9 @@ public class AI : MonoBehaviour
             target.SetActive(true);
             if (duration == 0)
                 duration = Random.Range(2.5f, 5f);
-            willAttack = false;
+            //willAttack = false;
             willMove = false;
-            willTurn = false;
+            //willTurn = false;
             GetComponent<Rigidbody>().freezeRotation = true;
             currentDuration = duration;
 
@@ -68,10 +72,14 @@ public class AI : MonoBehaviour
         {
             distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
             if (willTurn) // look at target
+            {
+                formerRotation = transform.rotation.eulerAngles;
                 if (type == 1) // only flier can tilt in y-axis
                     transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
                 else
                     transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            }
+                
             if (willMove) // move to target
             {
                 if (type == 0) // spider
@@ -148,6 +156,8 @@ public class AI : MonoBehaviour
             }
             if (willPatrol) // move forward for duration seconds, then turns around
             {
+                if (willTurn)
+                    transform.localRotation = Quaternion.Euler(formerRotation);
                 if (currentDuration <= 0) // when it reaches timer
                 {
                     currentDuration = duration;
