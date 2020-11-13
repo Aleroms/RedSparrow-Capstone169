@@ -6,7 +6,7 @@ using UnityEngine;
 public class CheckpointManager : MonoBehaviour
 {
     
-	[SerializeField]
+	[SerializeField]//code breaks when not serialized
 	private List<GameObject> _sectionCheckpoint;
 	//[SerializeField]
 	//private Stack<GameObject> _sectionCheckpoint;
@@ -16,15 +16,13 @@ public class CheckpointManager : MonoBehaviour
 
 	private GameObject _player;
 	private CharacterController cc;
-	
-
-	private bool _secondCheckpointVisited = false;
+	/*
 	[SerializeField]
 	private bool _sectionA;
 	[SerializeField]
 	private bool _sectionB;
 	[SerializeField]
-	private bool _sectionC;
+	private bool _sectionC;*/
 	//private Checkpoint _checkpointScript;
 	private void Start()
 	{
@@ -101,13 +99,14 @@ public class CheckpointManager : MonoBehaviour
 	}
 	public void EnterSection(string sectionName, GameObject sectionCheckpoint)
 	{
+		/*
 		if (sectionName == "Section A")
 			_sectionA = true;
 		else if (sectionName == "Section B")
 			_sectionB = true;
 		else if (sectionName == "Section C")
 			_sectionC = true;
-
+		*/
 		if(sectionCheckpoint != null)
 		{
 			print("section added");
@@ -116,6 +115,7 @@ public class CheckpointManager : MonoBehaviour
 	}
 	public void ExitSection(string sectionName)
 	{
+		/*
 		if (sectionName == "Section A")
 			_sectionA = false;
 		else if (sectionName == "Section B")

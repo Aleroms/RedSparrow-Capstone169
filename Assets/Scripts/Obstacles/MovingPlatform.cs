@@ -6,6 +6,7 @@ public class MovingPlatform : MonoBehaviour
 {
 	[SerializeField]
 	private Transform _pointA, _pointB;
+	[SerializeField]
 	private float _speed = 3f;
 	private bool _switch = true;
 
