@@ -6,9 +6,13 @@ public class MouseLook : MonoBehaviour
 {
 	[SerializeField]
 	private float _sensitivity = 100f;
+	private float _xRot;
+
 	[SerializeField]
 	private Transform _player;
-	private float _xRot;
+
+	[SerializeField]
+	private bool _isWebGLBuild = true;
 
 
     private void Start()
@@ -21,6 +25,13 @@ public class MouseLook : MonoBehaviour
 	{
 		float _mouseX = Input.GetAxis("Mouse X") * _sensitivity * Time.deltaTime;
 		float _mouseY = Input.GetAxis("Mouse Y") * _sensitivity * Time.deltaTime;
+
+		if(_isWebGLBuild)
+		{
+			_mouseX = Mathf.Clamp(_mouseX, -1, 1);
+			_mouseY = Mathf.Clamp(_mouseY, -1, 1);
+		}
+		
 
 		_xRot -= _mouseY;
 		_xRot = Mathf.Clamp(_xRot, -90, 90);

@@ -2396,6 +2396,11 @@ PrefabInstance:
       propertyPath: _sensitivity
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 3399999008143211899, guid: 6da9987b1fd42fa42bf8eb7287b98f4e,
+        type: 3}
+      propertyPath: _isWebGLBuild
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4564828482108530826, guid: 6da9987b1fd42fa42bf8eb7287b98f4e,
         type: 3}
       propertyPath: m_Layer

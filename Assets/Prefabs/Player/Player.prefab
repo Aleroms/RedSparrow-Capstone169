@@ -448,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sensitivity: 250
   _player: {fileID: 1916943055000976223}
+  _isWebGLBuild: 0
 --- !u!81 &3200564653356960418
 AudioListener:
   m_ObjectHideFlags: 0
