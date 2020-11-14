@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 	private bool _isgrounded;
 	[SerializeField]
 	private bool _iscrouching;
+	private bool _crouchToggle = false;
 	[SerializeField]
 	private bool _issprinting;
 
@@ -146,16 +147,20 @@ public class Player : MonoBehaviour
 	{	//works with ground layerMask
 		_iscrouching = Physics.CheckSphere(_ceilingCheck.position, _groundDistance,_groundMask);
 
-		if (Input.GetKey(KeyCode.LeftControl))
+		//if (Input.GetKey(KeyCode.LeftControl))
+		if (Input.GetKeyDown(KeyCode.C) && _crouchToggle == false)
 		{
 			_iscrouching = true;
+			_crouchToggle = true;
 			_controller.height = _crouchHeight;
 		}
+		//else if(Input.GetKeyDown(KeyCode.C) && _crouchToggle == true)
 		
 		//negates the player from standing up when under obstacle v v 
-		if(Input.GetKeyUp(KeyCode.LeftControl) && _iscrouching == false)
+		if(Input.GetKeyDown(KeyCode.C) && !_iscrouching && _crouchToggle)
 		{
 			_controller.height = 1.8f;
+			_crouchToggle = false;
 		}
 	
 	}
