@@ -34,7 +34,7 @@ public class GunController : MonoBehaviour
     public int SammoCount;//If the gun has a second type, how mauch ammo is in that magazine? This Var will tell you
     public Sprite reticleGun;
     public Image reticlePlayer;
-    public Sprite reticleDefault;
+    public Sprite reticleDefault, reticleUnzoom;
     public Text pickupPrompt;
     public float pickupPromptTimer;
 
@@ -53,6 +53,8 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
+        if (reticlePlayer.GetComponent<Image>().sprite != reticleGun && isEquipped) // match player reticle to gun type
+            reticlePlayer.GetComponent<Image>().sprite = reticleGun;
         if (pickupPromptTimer > 0) // remove prompt if no nearby weapons found for a small duration
         {
             pickupPromptTimer -= Time.deltaTime;
@@ -106,6 +108,8 @@ public class GunController : MonoBehaviour
         GetComponent<BoxCollider>().enabled = true; // enable weapon collision
         gunRB.AddForce(playerCamera.forward * dropForwardForce, ForceMode.Impulse);
         gunRB.AddForce(playerCamera.forward * dropUpwardForce, ForceMode.Impulse);
+        if (name.Contains("Sniper"))
+            GetComponent<Zoom>().ZoomOut();
         reticlePlayer.GetComponent<Image>().sprite = reticleDefault; // change reticle to default
     }
 

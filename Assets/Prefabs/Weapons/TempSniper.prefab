@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 5874952970862044116}
   - component: {fileID: 5874952970862044119}
   - component: {fileID: 5874952970862044118}
+  - component: {fileID: -8178879967704924778}
   m_Layer: 0
   m_Name: TempSniper
   m_TagString: Untagged
@@ -594,6 +595,7 @@ MonoBehaviour:
   reticleGun: {fileID: 21300000, guid: f47236b21626cf64783d124ceab02d49, type: 3}
   reticlePlayer: {fileID: 0}
   reticleDefault: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c, type: 3}
+  reticleUnzoom: {fileID: 21300000, guid: f47236b21626cf64783d124ceab02d49, type: 3}
   pickupPrompt: {fileID: 0}
   pickupPromptTimer: 0
 --- !u!114 &5874952970862044118
@@ -616,6 +618,25 @@ MonoBehaviour:
   weaponRange: 50
   knockBack: 100
   gunEnd: {fileID: 5874952971630750909}
+--- !u!114 &-8178879967704924778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874952970862044139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fb103b9b17f0049b44b002e7dca627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  isZoomed: 0
+  equipped: 0
+  unzoom: {fileID: 21300000, guid: f47236b21626cf64783d124ceab02d49, type: 3}
+  zoom: {fileID: 21300000, guid: dba45f05e8dd10445b80ca79c8d64423, type: 3}
+  reticle: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &5874952970872906872
 GameObject:
   m_ObjectHideFlags: 0

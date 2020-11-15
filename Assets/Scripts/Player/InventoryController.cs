@@ -36,6 +36,8 @@ public class InventoryController : MonoBehaviour
     }
 
     void gunSwitch() {
+        if (gun1.name.Contains("Sniper"))
+            gun1.GetComponent<Zoom>().ZoomOut();
         GameObject temp = gun1;
         gun1 = gun2;
         gun2 = temp;

@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 813316563}
   - component: {fileID: 813316562}
   m_Layer: 5
-  m_Name: player_crosshair (new)
+  m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6331,11 +6331,6 @@ PrefabInstance:
       objectReference: {fileID: 1364036572}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
-      propertyPath: reticleGun
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
-        type: 3}
       propertyPath: reticleDefault
       value: 
       objectReference: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c,
@@ -6700,12 +6695,6 @@ PrefabInstance:
       propertyPath: reticleDefault
       value: 
       objectReference: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c,
-        type: 3}
-    - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
-        type: 3}
-      propertyPath: reticleGun
-      value: 
-      objectReference: {fileID: 21300000, guid: dba45f05e8dd10445b80ca79c8d64423,
         type: 3}
     - target: {fileID: 5874952970862044139, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
