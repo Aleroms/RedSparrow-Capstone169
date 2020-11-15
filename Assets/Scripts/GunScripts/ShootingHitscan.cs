@@ -56,9 +56,9 @@ public class ShootingHitscan : MonoBehaviour
         if (Physics.Raycast(rayOrigin, aimCamera.transform.forward, out hit, weaponRange)) //If we hit something...
         {
             laserLine.SetPosition(1, hit.point);//Set the end of the laser to the thing we hit
-            EnemyHealth health = hit.collider.GetComponent<EnemyHealth>();//Get the health of the thing we hit
+            AI health = hit.collider.GetComponent<AI>();//Get the health of the thing we hit
             if (health != null) {//If there is health, call the enemy's damage function and hurt the enemy
-                health.gotDamaged(gunDamage);
+                health.Damage(gunDamage);
             }
             if (hit.rigidbody != null) {//If the enemy has a rigid body, push the enemy back 
                 hit.rigidbody.AddForce(-hit.normal * knockBack);
