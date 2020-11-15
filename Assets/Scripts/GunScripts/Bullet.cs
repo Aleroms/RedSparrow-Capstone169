@@ -23,16 +23,21 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<Player>().Damage(bulletDamage * 10);
-        EnemyHealth health = collision.gameObject.GetComponent<EnemyHealth>();
+            collision.gameObject.GetComponent<Player>().Damage(bulletDamage / 2);
+        AI health = collision.gameObject.GetComponent<AI>();
         if (health != null)
         {
-            health.gotDamaged(bulletDamage);
+            health.Damage(bulletDamage);
         }
         Die();
     }
 
     private void Die() {
         Destroy(gameObject);
+    }
+
+    public void SetDamage(int value)
+    {
+        bulletDamage = value;
     }
 }

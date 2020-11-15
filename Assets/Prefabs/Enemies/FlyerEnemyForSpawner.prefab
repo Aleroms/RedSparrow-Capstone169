@@ -1453,12 +1453,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5339209453048824255}
   - component: {fileID: 5339209453048824254}
+  - component: {fileID: 4920455690395894191}
   - component: {fileID: 5339209453048824249}
-  - component: {fileID: 5339209453048824248}
-  - component: {fileID: 5339209453048824252}
   - component: {fileID: 5339209453048824253}
   - component: {fileID: 4723609490021697270}
-  - component: {fileID: 4920455690395894191}
   m_Layer: 0
   m_Name: FlyerEnemyForSpawner
   m_TagString: Enemy
@@ -1491,6 +1489,20 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5339209453048824251}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &4920455690395894191
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339209453048824251}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5339209453048824249
 MeshRenderer:
@@ -1533,32 +1545,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5339209453048824248
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5339209453048824251}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5339209453048824252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5339209453048824251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebe830fbab9154478d15b0838d18dd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 2
 --- !u!54 &5339209453048824253
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1594,54 +1580,30 @@ MonoBehaviour:
   willTurn: 1
   willPatrol: 0
   duration: 0
-  player: {fileID: 0}
-  target: {fileID: 3919258372585623121}
-  bullet: {fileID: 0}
-  position: {fileID: 0}
-  randomTime: 0
-  yVel: 0
-  randomX: 0
-  randomZ: 0
-  currentDuration: 0
-  speed: 0
-  rb: {fileID: 5339209453048824253}
-  distance: 0
-  cooldown: 0
-  droneY: 0
-  jumpCooldown: 0
-  jumpDuration: 0
-  damage: 10
-  random: 0
-  damageArray: 00000000000000000000000000000000
-  model:
-  - {fileID: 1758058643869511453}
-  - {fileID: 1269611904118157425}
-  - {fileID: 244788771291016206}
-  - {fileID: 0}
   bulletPrefab: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0,
     type: 3}
-  canJump: 1
-  fireFromRight: 0
-  formerRotation: {x: 0, y: 0, z: 0}
+  nameArray:
+  - 
+  - Drone
+  - 
+  - 
   meshArray:
   - {fileID: 4864056309639282896, guid: 4d41f156090ebb44c95e15a69fd1abaf, type: 3}
   - {fileID: 3369316746193770658, guid: 3a031000c824cbd44865059675b5ee66, type: 3}
   - {fileID: -6239469015914299103, guid: 60025ed05c2feee48a6459d874996354, type: 3}
   - {fileID: 0}
---- !u!64 &4920455690395894191
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5339209453048824251}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  healthArray: 00000000020000000000000000000000
+  damageArray: 00000000080000000000000000000000
+  attackCooldownArray:
+  - 0
+  - 1
+  - 0
+  - 0
+  speedArray:
+  - 0
+  - 2
+  - 0
+  - 0
 --- !u!1 &5447632300241471991
 GameObject:
   m_ObjectHideFlags: 0
