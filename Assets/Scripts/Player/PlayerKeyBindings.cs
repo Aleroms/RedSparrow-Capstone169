@@ -12,6 +12,7 @@ public class PlayerKeyBindings : MonoBehaviour
         public string drop;
         public string switchFireType;
         public string reload;
+        public string switchGuns;
     }
 
     [SerializeField]
@@ -39,6 +40,9 @@ public class PlayerKeyBindings : MonoBehaviour
     public string getReloadKey() {
         return keyBindings.reload;
     }
+    public string getSwitchGunsKey() {
+        return keyBindings.switchGuns;
+    }
     public void setshootGun(string input) {
         keyBindings.shoot = input;
     }
@@ -55,5 +59,9 @@ public class PlayerKeyBindings : MonoBehaviour
     }
     public void setReloadKey(string input) {
         keyBindings.reload = input;
+    }
+    public void setSwitchGunsKey(string input)
+    {
+        keyBindings.switchGuns = input;
     }
 }

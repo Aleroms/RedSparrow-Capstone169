@@ -11,7 +11,8 @@ public class PlayerStatTrack : MonoBehaviour
         public int littleAmmoPool;//This ammo pool is for pistols, smgs, and other small caliber guns
         public int largeAmmoPool;// This ammo pool is for snipers, assualt rifles, and other large caliber guns
         public int laserAmmoPool;// This ammo pool is for laser type guns
-        public bool hasGun;//This tells the game if the player already has a gun
+        public bool hasGun1;//This tells the game if the player already has a gun in slot 1
+        public bool hasGun2;//This tells the game if the player already has a gun in slot 2
     }
 
     [SerializeField]
@@ -28,8 +29,12 @@ public class PlayerStatTrack : MonoBehaviour
     {
         return playerStats.laserAmmoPool;
     }
-    public bool getHasGun() {
-        return playerStats.hasGun;
+    public bool getHasGun1() {
+        return playerStats.hasGun1;
+    }
+    public bool getHasGun2()
+    {
+        return playerStats.hasGun2;
     }
     public void setLittleAmmoPool(int input) {
         playerStats.littleAmmoPool = input;
@@ -42,7 +47,11 @@ public class PlayerStatTrack : MonoBehaviour
     {
         playerStats.laserAmmoPool = input;
     }
-    public void setHasGun(bool input) {
-        playerStats.hasGun = input;
+    public void setHasGun1(bool input) {
+        playerStats.hasGun1 = input;
+    }
+    public void setHasGun2(bool input)
+    {
+        playerStats.hasGun2 = input;
     }
 }

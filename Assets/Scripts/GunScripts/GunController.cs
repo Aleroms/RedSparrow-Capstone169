@@ -60,13 +60,13 @@ public class GunController : MonoBehaviour
                 pickupPrompt.text = ""; 
         }
         Vector3 distToPlayer = player.transform.position - transform.position;//Every update, we wanna know how far away the player is to the gun
-        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && !player.GetComponent<PlayerStatTrack>().getHasGun()) // pickup prompt
+        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && (!player.GetComponent<PlayerStatTrack>().getHasGun1() || !player.GetComponent<PlayerStatTrack>().getHasGun2())) // pickup prompt
         {
             pickupPrompt.text = "Press " + "<color=#CCCC00>" + player.GetComponent<PlayerKeyBindings>().getPickUp() + "</color>" + " to pickup " + name + ".";
             pickupPromptTimer = 0.0625f;
         }
         //If the gun is not equiped, and the player is close enough to equip it, and the player presses the key to equip the gun, AND the player isn't already holding a gun
-        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getPickUp()) && !player.GetComponent<PlayerStatTrack>().getHasGun()) {
+        if (!isEquipped && distToPlayer.magnitude <= pickUpRange && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getPickUp()) && (!player.GetComponent<PlayerStatTrack>().getHasGun1() || !player.GetComponent<PlayerStatTrack>().getHasGun2())) {
             PickUp();//Then pick up the gun
         }
         //If the player has a gun and presses the key to drop the gun
@@ -112,7 +112,8 @@ public class GunController : MonoBehaviour
     //Here is an explaination of things we set to false
     void setThingsFalse() {
         isEquipped = false;//The gun is not equiped
-        player.GetComponent<PlayerStatTrack>().setHasGun(false);//We tell the player stat tracker that there is no longer a gun equiped
+        player.GetComponent<PlayerStatTrack>().setHasGun1(false);//We tell the player stat tracker that there is no longer a gun equiped
+        player.GetComponent<InventoryController>().setGun1(null);
         gunRB.isKinematic = false;//We turn off the kunematic body
         gunBC.isTrigger = false;//The collision box is no longer a trigger box (The gun can be kicked around now)
         //Finally, we disable the shooting scripts
@@ -131,7 +132,15 @@ public class GunController : MonoBehaviour
     //So if a gun can shoot lasers, the PgunType should always be set to "3" 
     void setThingsTrue() {
         isEquipped = true;
-        player.GetComponent<PlayerStatTrack>().setHasGun(true);
+        if (!player.GetComponent<PlayerStatTrack>().getHasGun1())
+        {
+            player.GetComponent<PlayerStatTrack>().setHasGun1(true);
+            player.GetComponent<InventoryController>().setGun1(gameObject);
+        }
+        else {
+            player.GetComponent<PlayerStatTrack>().setHasGun2(true);
+            player.GetComponent<InventoryController>().setGun2(gameObject);
+        }
         gunRB.isKinematic = true;
         gunBC.isTrigger = true;
         if (hitScanScript != null && PammoCount > 0) // fixed bug where you can fire once after picking up an empty ammo weapon
