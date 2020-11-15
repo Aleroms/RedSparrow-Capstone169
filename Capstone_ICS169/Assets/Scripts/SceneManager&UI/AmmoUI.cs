@@ -22,7 +22,7 @@ public class AmmoUI : MonoBehaviour
     {
         //check to see if a player has a gun. If they do set gun  equal to the GunController of the gun the player currently has.
         //Then check the gun type and display the corresponding amount of ammo the player has for that gun.
-        if (playerStatTrack.getHasGun())
+        if (playerStatTrack.getHasGun1())
         {
 
             gun = player.GetComponentInChildren<GunController>();
