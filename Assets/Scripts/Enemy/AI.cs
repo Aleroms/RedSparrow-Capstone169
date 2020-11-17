@@ -160,9 +160,9 @@ public class AI : MonoBehaviour
             for (int i = 0; i < 3; ++i) // 3 shot burst
             {
                 if (!fireFromRight) // alternate shots from each hand
-                    bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(0.2f, 0.9f, 1), transform.rotation);
+                    bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(0.2f, 0.6f, 1), transform.rotation);
                 else
-                    bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(-0.2f, 0.9f, 1), transform.rotation);
+                    bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(-0.2f, 0.6f, 1), transform.rotation);
                 fireFromRight = !fireFromRight;
                 bullet.transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
                 bullet.GetComponent<Bullet>().SetDamage(damage);
