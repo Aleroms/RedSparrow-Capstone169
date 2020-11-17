@@ -50,6 +50,7 @@ public class ShootingHitscan : MonoBehaviour
 
     void Shoot()
     {
+        player.GetComponent<AccuracyCounter>().ShotsFired();
         Vector3 rayOrigin = aimCamera.ViewportToWorldPoint(new Vector3(.5f,.5f,0f));//Origin of the ray is center of the screen
         RaycastHit hit;
         laserLine.SetPosition(0, gunEnd.position);//Origin of the laser is the end of the gun barrel
@@ -59,6 +60,7 @@ public class ShootingHitscan : MonoBehaviour
             AI health = hit.collider.GetComponent<AI>();//Get the health of the thing we hit
             if (health != null) {//If there is health, call the enemy's damage function and hurt the enemy
                 health.Damage(gunDamage);
+                player.GetComponent<AccuracyCounter>().ShotsHit();
             }
             if (hit.rigidbody != null) {//If the enemy has a rigid body, push the enemy back 
                 hit.rigidbody.AddForce(-hit.normal * knockBack);

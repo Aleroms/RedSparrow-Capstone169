@@ -37,6 +37,7 @@ public class GunController : MonoBehaviour
     public Sprite reticleDefault, reticleUnzoom;
     public Text pickupPrompt;
     public float pickupPromptTimer;
+    public float spread, spreadCooldown;
 
     void Start()
     {
@@ -60,6 +61,20 @@ public class GunController : MonoBehaviour
             pickupPromptTimer -= Time.deltaTime;
             if (pickupPromptTimer <= 0)
                 pickupPrompt.text = ""; 
+        }
+        if (spreadCooldown > 0) // spread mechanics
+        {
+            spreadCooldown -= Time.deltaTime;
+            if (spreadCooldown < 0)
+                spreadCooldown = 0;
+        }
+        if (spread > 0)
+        {
+            if (spreadCooldown <= 0)
+                spread -= Time.deltaTime;
+            reticlePlayer.gameObject.transform.localScale = new Vector3(1 + spread / 1.5f, 1 + spread / 1.5f, 1 + spread / 1.5f);
+            if (spread < 0)
+                spread = 0;
         }
         Vector3 distToPlayer = player.transform.position - transform.position;//Every update, we wanna know how far away the player is to the gun
         if (!isEquipped && distToPlayer.magnitude <= pickUpRange && (!player.GetComponent<PlayerStatTrack>().getHasGun1() || !player.GetComponent<PlayerStatTrack>().getHasGun2())) // pickup prompt
