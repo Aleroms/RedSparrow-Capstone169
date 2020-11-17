@@ -11,6 +11,8 @@ public class LevelOneLights : MonoBehaviour
 
     private GameManager _gm;
     private LevelLoader _levelLoader;
+
+    public GameObject skytext;
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class LevelOneLights : MonoBehaviour
         {
             DomeBridge.SetActive(false);
             DomePlatform.SetActive(true);
+            skytext.SetActive(true);
 
             StartCoroutine(EndCoroutine());
         }
