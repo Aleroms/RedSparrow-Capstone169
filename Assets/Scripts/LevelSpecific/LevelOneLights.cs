@@ -10,12 +10,14 @@ public class LevelOneLights : MonoBehaviour
     private GameObject DomePlatform;
 
     private GameManager _gm;
+    private LevelLoader _levelLoader;
     // Start is called before the first frame update
 
     // Update is called once per frame
     private void Start()
     {
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _levelLoader = GameObject.Find("GameManager").GetComponent<LevelLoader>();
         if (_gm == null) Debug.LogError("Gm null");
         if(DomePlatform.activeSelf)
         {
@@ -39,6 +41,6 @@ public class LevelOneLights : MonoBehaviour
     IEnumerator EndCoroutine()
 	{
         yield return new WaitForSeconds(30f);
-        _gm.OnPlayerDeath();
+        _levelLoader.LoadNextLevel();
 	}
 }
