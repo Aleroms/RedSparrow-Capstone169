@@ -28,6 +28,8 @@ public class Bullet : MonoBehaviour
         if (health != null)
         {
             health.Damage(bulletDamage);
+            GameObject player = player = GameObject.Find("Player");
+            player.GetComponent<AccuracyCounter>().ShotsHit();
         }
         Die();
     }
