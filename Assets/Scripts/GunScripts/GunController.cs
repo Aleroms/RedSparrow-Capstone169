@@ -295,6 +295,10 @@ public class GunController : MonoBehaviour
         return PgunType;
     }
 
+    public bool hasSGunType()
+    {
+        return (Sguntype != 0);
+    }
     public bool canSwitchType()
     {
         return (hitScanScript != null && bulletScript != null);

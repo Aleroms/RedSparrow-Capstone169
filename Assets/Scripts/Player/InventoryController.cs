@@ -12,11 +12,13 @@ public class InventoryController : MonoBehaviour
     [SerializeField]
     private GameObject gun2;//This is the gun in slot 2
 
+
     void Update()
     {
         if (Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getSwitchGunsKey()) && gun2 != null) {
             gunSwitch();
         }
+ 
         if (gun1 == null && gun2 != null) {
             gun1 = gun2;
             gun1.SetActive(true);
@@ -43,5 +45,19 @@ public class InventoryController : MonoBehaviour
         gun2 = temp;
         gun1.SetActive(true);
         gun2.SetActive(false);
+    }
+
+   
+    public bool hasGun2()
+    {
+        return (gun2 != null);
+    }
+    public GunController secondgun()
+    {
+        return gun2.gameObject.GetComponent<GunController>();
+    }
+    public GunController primaryGun()
+    {
+        return gun1.gameObject.GetComponent<GunController>();
     }
 }
