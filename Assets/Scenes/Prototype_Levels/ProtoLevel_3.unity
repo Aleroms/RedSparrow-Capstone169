@@ -3379,7 +3379,7 @@ PrefabInstance:
     - target: {fileID: 8823041509483937600, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: m_text
-      value: asdf
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8823041509483937603, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}

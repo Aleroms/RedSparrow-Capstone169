@@ -5,8 +5,8 @@ using TMPro;
 
 public class AmmoUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;//This is where the PlayerStatTrack script will be held
+    //[SerializeField]
+    //private GameObject player;//This is where the PlayerStatTrack script will be held
     private PlayerStatTrack playerStatTrack; //The playerStatTrack script attached to the player
     private GunController gun; //If the player is holding a gun, its script will go here
     [SerializeField]
@@ -17,9 +17,10 @@ public class AmmoUI : MonoBehaviour
 
 
     void Start()
-    {
-        playerStatTrack = player.GetComponent<PlayerStatTrack>();
-        inventory = player.GetComponent<InventoryController>();
+    {   //current code was causing too many errors if developers did not link player gameobject to AmmoUI
+        //better way is to GameObject.Find or FindGameObjectWithTag
+        playerStatTrack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatTrack>();//player.GetComponent<PlayerStatTrack>();
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryController>();//player.GetComponent<InventoryController>();
     }
     // Update is called once per frame
     void Update()
