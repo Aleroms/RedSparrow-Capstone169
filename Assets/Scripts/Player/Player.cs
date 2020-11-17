@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	private bool _crouchToggle = false;
 	[SerializeField]
 	private bool _issprinting;
+	
 
 	[SerializeField]
 	private float _speedOriginal;

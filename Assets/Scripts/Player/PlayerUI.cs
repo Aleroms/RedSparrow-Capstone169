@@ -10,26 +10,30 @@ public class PlayerUI : MonoBehaviour
 	[SerializeField]
 	private Slider _staminaSlider;
 
-
-	
+	[SerializeField]
+	private bool _isFirstLevel = false;
 	
 
 	public void SetMaxHealth(int h)
 	{
-		_healthSlider.maxValue = h;
+		if(_isFirstLevel == false)
+			_healthSlider.maxValue = h;
 	}
 	public void SetMaxStamina(float s)
 	{
-		_staminaSlider.maxValue = s;
+		if (_isFirstLevel == false)
+			_staminaSlider.maxValue = s;
 	}
 	
 	public void HealthBar(int health)
 	{
-		_healthSlider.value = health;
+		if (_isFirstLevel == false)
+			_healthSlider.value = health;
 	}
 	public void StaminaBar(float stamina)
 	{
-		_staminaSlider.value = stamina;
+		if (_isFirstLevel == false)
+			_staminaSlider.value = stamina;
 	}
 
 
