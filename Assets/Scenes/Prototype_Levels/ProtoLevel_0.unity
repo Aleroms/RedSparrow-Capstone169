@@ -34948,11 +34948,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8461461941095599477, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8823041509037930031, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 267394302}
+    - target: {fileID: 8823041509037930031, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823041509483937600, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823041510755977545, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a226f71de37e34cb02960b4dcacbee, type: 3}
 --- !u!1 &1724442191
