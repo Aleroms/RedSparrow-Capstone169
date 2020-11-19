@@ -13,6 +13,10 @@ public class PlayerStatTrack : MonoBehaviour
         public int laserAmmoPool;// This ammo pool is for laser type guns
         public bool hasGun1;//This tells the game if the player already has a gun in slot 1
         public bool hasGun2;//This tells the game if the player already has a gun in slot 2
+        public float Mission1Time;
+        public int Mission1Kills;
+        public float mouseSensitivity;
+        public float volumeLevel;
     }
 
     [SerializeField]
@@ -36,6 +40,21 @@ public class PlayerStatTrack : MonoBehaviour
     {
         return playerStats.hasGun2;
     }
+    public float getMission1Time() {
+        return PlayerPrefs.GetFloat("Mission1Time", 0f);
+    }
+    public float getMission1Kills()
+    {
+        return PlayerPrefs.GetInt("Mission1Kills", 0);
+    }
+    public float getMouseSensitivity() {
+        return PlayerPrefs.GetFloat("mouseSensitivity", 3.2f);
+    }
+    public float getVolumeLevel()
+    {
+        return PlayerPrefs.GetFloat("volumeLevel", 70f);
+    }
+
     public void setLittleAmmoPool(int input) {
         playerStats.littleAmmoPool = input;
     }
@@ -53,5 +72,19 @@ public class PlayerStatTrack : MonoBehaviour
     public void setHasGun2(bool input)
     {
         playerStats.hasGun2 = input;
+    }
+    public void setMission1Time(float input) {
+        PlayerPrefs.SetFloat("Mission1Time", input);
+    }
+    public void setMission1Kills(float input)
+    {
+        PlayerPrefs.SetFloat("Mission1Kills", input);
+    }
+    public void setMouseSensitivity(float input) {
+        PlayerPrefs.SetFloat("mouseSensitivity", input);
+    }
+    public void setVolumeLevel(float input)
+    {
+        PlayerPrefs.SetFloat("volumeLevel", input);
     }
 }

@@ -24,44 +24,56 @@ public class PlayerKeyBindings : MonoBehaviour
      * This is why Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getPickUp()) is valid
      * Anyway's long story short we need to turn the string "Mouse0" into the Keycode "Mouse0" which is why the "(KeyCode)System.Enum.Parse(typeof(KeyCode),"  is needed
     */
+
     public string getshootGun() {
-        return keyBindings.shoot;
+        return PlayerPrefs.GetString("shoot", keyBindings.shoot);
     }
     public string getPickUp() {
-        return keyBindings.pickUp;
+        return PlayerPrefs.GetString("pickUp", keyBindings.pickUp);
     }
     public string getDrop() {
-        return keyBindings.drop;
+        return PlayerPrefs.GetString("drop", keyBindings.drop);
     }
     public string getSwitchFireType()
     {
-        return keyBindings.switchFireType;
+        return PlayerPrefs.GetString("switchFireType", keyBindings.switchFireType);
     }
     public string getReloadKey() {
-        return keyBindings.reload;
+        return PlayerPrefs.GetString("reload", keyBindings.reload);
     }
     public string getSwitchGunsKey() {
-        return keyBindings.switchGuns;
+        return PlayerPrefs.GetString("switchGuns", keyBindings.switchGuns);
     }
+
+
     public void setshootGun(string input) {
-        keyBindings.shoot = input;
+        PlayerPrefs.SetString("shoot", input);
     }
     public void setPickUp(string input)
     {
-        keyBindings.pickUp = input;
+        PlayerPrefs.SetString("pickUp", input);
     }
     public void setDrop(string input)
     {
-        keyBindings.drop = input;
+        PlayerPrefs.SetString("drop", input);
     }
     public void setSwitchFireType(string input) {
-        keyBindings.switchFireType = input;
+        PlayerPrefs.SetString("switchFireType", input);
     }
     public void setReloadKey(string input) {
-        keyBindings.reload = input;
+        PlayerPrefs.SetString("reload", input);
     }
     public void setSwitchGunsKey(string input)
     {
-        keyBindings.switchGuns = input;
+        PlayerPrefs.SetString("switchGuns", input);
+    }
+
+    public void resetKeyBindings() {
+        PlayerPrefs.SetString("shoot", keyBindings.shoot);
+        PlayerPrefs.SetString("pickUp", keyBindings.pickUp);
+        PlayerPrefs.SetString("drop", keyBindings.drop);
+        PlayerPrefs.SetString("switchFireType", keyBindings.switchFireType);
+        PlayerPrefs.SetString("reload", keyBindings.reload);
+        PlayerPrefs.SetString("switchGuns", keyBindings.switchGuns);
     }
 }

@@ -18,6 +18,8 @@ public class PauseMenuUI : MonoBehaviour
 	[SerializeField]
 	private GameObject _staminaBar;
 
+    private Player player;
+
 	private bool _isPaused = false;
 
 	public Text mouseInput;
@@ -26,7 +28,12 @@ public class PauseMenuUI : MonoBehaviour
 	public Slider mouseSlider;
 	public Slider volumeSlider;
 
-	private void Update()
+    void Start() {
+        player = GameObject.Find("Player").GetComponent<Player>();
+    }
+
+
+    private void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
@@ -70,27 +77,26 @@ public class PauseMenuUI : MonoBehaviour
 	{
 		mouseInput.text = "3.2";
 		volumeInput.text = "70";
-
 		//StatsData.mouseSensitivity = 3.2f * 10 + 70;
 		//StatsData.volumeLevel = 100;
 
 		mouseSlider.value = 3.2f;
 		volumeSlider.value = 70;
 
-	}
+        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(3.2f);
+        player.GetComponent<PlayerStatTrack>().setVolumeLevel(70);
+    }
 	public void MouseSensitivity(float input)
 	{
 		mouseInput.text = input.ToString("F1");
-		//StatsData.mouseSensitivity = input * 10 + 70;
-
-		// N*10 + 70
-	}
+        //StatsData.mouseSensitivity = input * 10 + 70;
+        // N*10 + 70
+        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(input);
+    }
 	public void VolumeLevel(float input)
 	{
 		volumeInput.text = input.ToString();
-		//StatsData.volumeLevel = input;
-
-		
-
-	}
+        //StatsData.volumeLevel = input;
+        player.GetComponent<PlayerStatTrack>().setVolumeLevel(input);
+    }
 }

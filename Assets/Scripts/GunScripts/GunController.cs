@@ -79,7 +79,7 @@ public class GunController : MonoBehaviour
         Vector3 distToPlayer = player.transform.position - transform.position;//Every update, we wanna know how far away the player is to the gun
         if (!isEquipped && distToPlayer.magnitude <= pickUpRange && (!player.GetComponent<PlayerStatTrack>().getHasGun1() || !player.GetComponent<PlayerStatTrack>().getHasGun2())) // pickup prompt
         {
-            pickupPrompt.text = "Press " + "<color=#CCCC00>" + player.GetComponent<PlayerKeyBindings>().getPickUp() + "</color>" + " to pickup " + name + ".";
+            pickupPrompt.text = "Press " + "<color=#CCCC00>" + player.GetComponent<PlayerKeyBindings>().getPickUp().ToUpper() + "</color>" + " to pickup " + name + ".";
             pickupPromptTimer = 0.0625f;
         }
         //If the gun is not equiped, and the player is close enough to equip it, and the player presses the key to equip the gun, AND the player isn't already holding a gun
