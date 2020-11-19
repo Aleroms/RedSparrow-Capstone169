@@ -6,8 +6,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-	
-    
+	[SerializeField]
+	private GameObject _OnPlayerDeath_Panel;
+	[SerializeField]
+	private GameObject _gameover_text;
+	private bool temp = true;
+
+	[SerializeField]
+	private float textFlickerSpeed = 0.4f;
+
 	public void PlayGame()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -23,10 +30,23 @@ public class UIManager : MonoBehaviour
 	}
 	public void GameOver()
 	{
-		SceneManager.LoadScene("Credits");
+		Time.timeScale = 0f;
+		Cursor.lockState = CursorLockMode.None;
+		_OnPlayerDeath_Panel.SetActive(true);
+		StartCoroutine(GameOverCoroutine());
+		//SceneManager.LoadScene("Credits");
 		//set game over panel on
 		//should have a button that quits
 		//should have button that takes to main menu
+	}
+	IEnumerator GameOverCoroutine()
+	{
+		while(temp)
+		{
+			_gameover_text.SetActive(true);
+			yield return new WaitForSeconds(textFlickerSpeed);
+			_gameover_text.SetActive(false);
+		}
 	}
 	public void MainMenu()
 	{

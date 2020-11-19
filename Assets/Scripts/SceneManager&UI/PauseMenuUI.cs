@@ -17,7 +17,8 @@ public class PauseMenuUI : MonoBehaviour
 	private GameObject _healthBar;
 	[SerializeField]
 	private GameObject _staminaBar;
-
+	[SerializeField]
+	private GameObject _recticle;
     private Player player;
 
 	private bool _isPaused = false;
@@ -51,6 +52,7 @@ public class PauseMenuUI : MonoBehaviour
 		_PauseMenuPanel.SetActive(true);
 		_healthBar.SetActive(false);
 		_staminaBar.SetActive(false);
+		_recticle.SetActive(false);
 
 		Time.timeScale = 0f;
 		Cursor.lockState = CursorLockMode.None;
@@ -64,6 +66,7 @@ public class PauseMenuUI : MonoBehaviour
 		_OptionsMenuPanel.SetActive(false);
 		_healthBar.SetActive(true);
 		_staminaBar.SetActive(true);
+		_recticle.SetActive(true);
 
 		Time.timeScale = 1f;
 		Cursor.lockState = CursorLockMode.Locked;
@@ -91,7 +94,7 @@ public class PauseMenuUI : MonoBehaviour
 		mouseInput.text = input.ToString("F1");
         //StatsData.mouseSensitivity = input * 10 + 70;
         // N*10 + 70
-        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(input);
+        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(input * 10 + 70);
     }
 	public void VolumeLevel(float input)
 	{
