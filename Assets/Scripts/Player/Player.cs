@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
 		_health -= damage;
 		_pUI.HealthBar(_health);
 
-        if (_health < 0) {
+        if (_health <= 0) {
 			_gm.OnPlayerDeath();
         }
 			
