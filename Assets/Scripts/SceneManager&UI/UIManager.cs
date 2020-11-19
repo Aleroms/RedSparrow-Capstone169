@@ -41,11 +41,13 @@ public class UIManager : MonoBehaviour
 	}
 	IEnumerator GameOverCoroutine()
 	{
-		while(temp)
+		while(true)
 		{
-			_gameover_text.SetActive(true);
-			yield return new WaitForSeconds(textFlickerSpeed);
-			_gameover_text.SetActive(false);
+			print("e");
+			_gameover_text.gameObject.SetActive(true);
+			yield return new WaitForSeconds(0.5f);
+			_gameover_text.gameObject.SetActive(false);
+			yield return new WaitForSeconds(0.5f);
 		}
 	}
 	public void MainMenu()
