@@ -391,8 +391,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -410,8 +410,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -508,8 +508,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1001 &233759448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,8 +681,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1 &264334650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1412,7 @@ PrefabInstance:
     - target: {fileID: 1694708532371676933, guid: d24f2b93d81cdc14d8107703df9db21b,
         type: 3}
       propertyPath: spawnedItem
-      value: 
+      value:
       objectReference: {fileID: 6826094612054857080, guid: 24ab902144628f34fa32e0e9692de1d2,
         type: 3}
     m_RemovedComponents: []
@@ -1973,32 +1973,32 @@ PrefabInstance:
     - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: hand
-      value: 
+      value:
       objectReference: {fileID: 690943725}
     - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: playerCamera
-      value: 
+      value:
       objectReference: {fileID: 486450351}
     - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: reticlePlayer
-      value: 
+      value:
       objectReference: {fileID: 236226821}
     - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: pickupPrompt
-      value: 
+      value:
       objectReference: {fileID: 197963255}
     - target: {fileID: 4297523751006722407, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 4297523751006722427, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
@@ -2173,37 +2173,37 @@ PrefabInstance:
     - target: {fileID: 245839652728327201, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 245839652728327202, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: hand
-      value: 
+      value:
       objectReference: {fileID: 690943725}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: playerCamera
-      value: 
+      value:
       objectReference: {fileID: 486450351}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: reticlePlayer
-      value: 
+      value:
       objectReference: {fileID: 236226821}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: pickupPrompt
-      value: 
+      value:
       objectReference: {fileID: 197963255}
     - target: {fileID: 245839652728327206, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
@@ -2501,25 +2501,17 @@ PrefabInstance:
     - target: {fileID: 1694708532371676933, guid: d24f2b93d81cdc14d8107703df9db21b,
         type: 3}
       propertyPath: numOfSpawns
-<<<<<<< HEAD
       value: 15
-=======
-      value: 6
->>>>>>> 94ec38a0912d8fee641046cfdc82c0cbea8e9687
       objectReference: {fileID: 0}
     - target: {fileID: 1694708532371676933, guid: d24f2b93d81cdc14d8107703df9db21b,
         type: 3}
       propertyPath: spawnTimeDelay
-<<<<<<< HEAD
       value: 4
-=======
-      value: 6
->>>>>>> 94ec38a0912d8fee641046cfdc82c0cbea8e9687
       objectReference: {fileID: 0}
     - target: {fileID: 1694708532371676933, guid: d24f2b93d81cdc14d8107703df9db21b,
         type: 3}
       propertyPath: spawnedItem
-      value: 
+      value:
       objectReference: {fileID: 6826094612054857080, guid: 24ab902144628f34fa32e0e9692de1d2,
         type: 3}
     m_RemovedComponents: []
@@ -2581,7 +2573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 16a026f19c7e25042afb043b365c6fb4, type: 3}
       propertyPath: m_Materials.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 2100000, guid: 571e90cc5c806804b99022ea03011fea, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16a026f19c7e25042afb043b365c6fb4, type: 3}
@@ -3398,7 +3390,7 @@ PrefabInstance:
     - target: {fileID: 766793808151214108, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: m_Text
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 1243656088734166881, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
@@ -3548,12 +3540,12 @@ PrefabInstance:
     - target: {fileID: 8823041509037930031, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 8823041509483937600, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: m_text
-      value: 
+      value:
       objectReference: {fileID: 0}
     - target: {fileID: 8823041509483937603, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
@@ -3834,32 +3826,32 @@ PrefabInstance:
     - target: {fileID: 5874952970862044118, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1710047802}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: hand
-      value: 
+      value:
       objectReference: {fileID: 690943725}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: playerCamera
-      value: 
+      value:
       objectReference: {fileID: 486450351}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: reticlePlayer
-      value: 
+      value:
       objectReference: {fileID: 236226821}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: pickupPrompt
-      value: 
+      value:
       objectReference: {fileID: 197963255}
     - target: {fileID: 5874952970862044139, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
