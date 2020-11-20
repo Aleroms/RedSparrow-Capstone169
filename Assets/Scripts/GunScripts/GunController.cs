@@ -50,6 +50,8 @@ public class GunController : MonoBehaviour
         else {//If the gun is equiped, then certain things will be set to true
             setThingsTrue();
         }
+        reticlePlayer = GameObject.Find("Reticle").GetComponent<Image>();
+        pickupPrompt = GameObject.Find("Pickup Prompt").GetComponent<Text>();
     }
 
     void Update()

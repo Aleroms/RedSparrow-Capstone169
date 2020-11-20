@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 54300155785387762}
   m_Layer: 29
   m_Name: BulletPrototype
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   bulletDamage: 1
   _speed: 25
   lifetime: 5
+  bulletPrefab: {fileID: 5471505389857925286}
 --- !u!54 &54300155785387762
 Rigidbody:
   m_ObjectHideFlags: 0

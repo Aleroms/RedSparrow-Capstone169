@@ -42,7 +42,7 @@ public class ShootingPhysical : MonoBehaviour
         player.GetComponent<AccuracyCounter>().ShotsFired();
         GameObject bullet = Instantiate(_bulletPrefab, gunEnd.position, gunEnd.rotation);
         gameObject.GetComponent<GunController>().decreaseAmmo();
-        if (name.Contains("MachineGun") && transform.root == player.transform) // randomized spread for machine gun
+        if (name.Contains("MachineGun") && GetComponent<GunController>().isEquipped) // randomized spread for machine gun
         {
             bullet.transform.Rotate(GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f), GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f), GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f));
             GetComponent<GunController>().spread += autofireRate;

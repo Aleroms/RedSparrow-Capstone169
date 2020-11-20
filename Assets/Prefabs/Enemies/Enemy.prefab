@@ -33,6 +33,7 @@ Transform:
   m_LocalPosition: {x: 3.148, y: 2.251, z: -3.604}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5921845982360153072}
   - {fileID: 4373596040289479379}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -237,28 +238,27 @@ MonoBehaviour:
   duration: 0
   bulletPrefab: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0,
     type: 3}
-  controller: {fileID: 0}
   nameArray:
   - Spider
   - Drone
   - Racer
-  - Boss
+  - Walker
   meshArray:
   - {fileID: 4864056309639282896, guid: 4d41f156090ebb44c95e15a69fd1abaf, type: 3}
   - {fileID: 3369316746193770658, guid: 3a031000c824cbd44865059675b5ee66, type: 3}
   - {fileID: -6239469015914299103, guid: 60025ed05c2feee48a6459d874996354, type: 3}
   - {fileID: 379010558040167564, guid: be8a519d1176f694ab8cb7b24ca96960, type: 3}
   healthArray: 0100000002000000030000000f000000
-  damageArray: 08000000090000000600000019000000
+  damageArray: 090000000f000000060000003c000000
   attackCooldownArray:
   - 1
-  - 1.5
   - 3
-  - 5
+  - 3
+  - 3
   speedArray:
   - 3
-  - 1
   - 1.5
+  - 1
   - 0.75
 --- !u!1 &6791760429467334308
 GameObject:
@@ -285,6 +285,36 @@ Transform:
   m_GameObject: {fileID: 6791760429467334308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.7, z: 2.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5339209453048824255}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7348770248901154643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5921845982360153072}
+  m_Layer: 0
+  m_Name: LoS Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5921845982360153072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348770248901154643}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5339209453048824255}
