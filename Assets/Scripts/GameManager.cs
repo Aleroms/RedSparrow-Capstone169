@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 	{
         //freezes time
         //Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.None;
         _UIManager.GameOver();
         //set some UI up to say "GAME OVER"
         //freeze time
