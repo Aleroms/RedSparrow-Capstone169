@@ -11,7 +11,7 @@ public class AI : MonoBehaviour
     private GameObject player, bullet;
     private float randomTime, randomX, randomZ, currentDuration, speed, distance, cooldown, jumpCooldown, jumpDuration, attackCooldown, gravity = -9.81f, x, y, z;
     private int damage, random, health, nearThreshold = 6, farThreshold = 12;
-    private bool canJump = true, fireFromRight;
+    private bool canJump = true, fireFromRight, canSeePlayer;
     private Vector3 formerRotation, direction;
     private CharacterController controller;
     public string[] nameArray = new string[4];
@@ -20,14 +20,14 @@ public class AI : MonoBehaviour
     public int[] damageArray = new int[4];
     public float[] attackCooldownArray = new float[4];
     public float[] speedArray = new float[4];
-    private LineRenderer laserLine;// This is the laser
-    private WaitForSeconds shotDuration = new WaitForSeconds(1f); //.07
-    private GameObject end;
+    private LineRenderer laserLine;
+    private WaitForSeconds shotDuration = new WaitForSeconds(0.5f);
+    private GameObject end, losChecker;
     private RaycastHit hit;
     private Vector3 rayOrigin;
+    private int layerMask = 1 << 9;
     void Start()
     {
-        
         controller = GetComponent<CharacterController>();
         name = nameArray[type];
         GetComponent<MeshCollider>().sharedMesh = meshArray[type];
@@ -37,6 +37,7 @@ public class AI : MonoBehaviour
         attackCooldown = attackCooldownArray[type];
         speed = speedArray[type];
         player = GameObject.Find("Player");
+        laserLine = GetComponent<LineRenderer>();
         if (willPatrol) // special patrol state, disables standard movement
         {
             if (duration == 0)
@@ -49,34 +50,50 @@ public class AI : MonoBehaviour
             controller.radius = 0.25f;
             controller.height = 0.5f;
         }
+        else if (type == 1)
+        {
+
+        }
+            
         else if (type == 2)
             controller.height = 1.2f;
         else if (type == 3)
         {
             controller.radius = 1f;
             controller.height = 4f;
-            
-            end = this.gameObject.transform.GetChild(0).gameObject;
+            controller.center = new Vector3(0, 0, -1);
+            end = gameObject.transform.GetChild(1).gameObject;
             end.SetActive(true);
-            laserLine = GetComponent<LineRenderer>();
         }
+        losChecker = gameObject.transform.GetChild(0).gameObject;
+        losChecker.transform.localPosition = new Vector3(0, controller.height / 3, 0); // elevate los to roughly head height
     }
     void Update()
     {
+        losChecker.transform.LookAt(player.transform); // check if enemy has line-of-sight of player
+        if (Physics.Raycast(losChecker.transform.position, losChecker.transform.forward, out hit)) //layerMask
+        {
+            if (hit.transform.gameObject.CompareTag("Player"))
+                canSeePlayer = true;
+            else
+                canSeePlayer = false;
+        }
         if (type != 1) // gravity
         {
             if (!controller.isGrounded) // acceleration when midair
+            {
                 y += gravity * Time.deltaTime;
+                direction = x * transform.right + y * transform.up + z * transform.forward;
+                controller.Move(direction * speed * Time.deltaTime);
+            }
             else
                 y = 0;
-            direction = x * transform.right + y * transform.up + z * transform.forward;
-            controller.Move(direction * speed * Time.deltaTime);
         }
         if (isOn) // enable AI
         {
             name = nameArray[type] + " (" + (int)transform.position.x + ", " + (int)transform.position.y + ", " + (int)transform.position.z + ")"; // update name to show world position
             distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
-            if (willTurn) // look at player
+            if (willTurn && canSeePlayer) // look at player
             {
                 formerRotation = transform.rotation.eulerAngles;
                 if (type == 1) // only flier can tilt in y-axis
@@ -84,7 +101,7 @@ public class AI : MonoBehaviour
                 else
                     transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             }
-            if (willMove) // move to target
+            if (willMove && canSeePlayer) // move to target
             {
                 if (type == 0) // spider
                 {
@@ -118,6 +135,7 @@ public class AI : MonoBehaviour
                             z = Random.Range(-1, 2);
                         if (type == 1) // drone height direction
                         {
+                            randomTime = 3;
                             if (transform.position.y < nearThreshold / 2) // move away from ground
                                 y = 1;
                             else if (transform.position.y > farThreshold / 2) // move towards ground
@@ -128,7 +146,7 @@ public class AI : MonoBehaviour
                     }
                     randomTime -= Time.deltaTime;
                 }
-                else if (type == 3) // drone or racer
+                else if (type == 3) // walker
                 {
                     if (randomTime <= 0) // move to random position periodically
                     {
@@ -146,7 +164,7 @@ public class AI : MonoBehaviour
                 direction = x * transform.right + y * transform.up + z * transform.forward;
                 controller.Move(direction * speed * Time.deltaTime);
             }
-            if (willAttack && cooldown <= 0) // attack
+            if (willAttack && cooldown <= 0 && canSeePlayer) // attack
             {
                 if ((type == 0 && distance <= 1.5f) || ((type == 1 || type == 2) && distance <= farThreshold) || (type == 3 && distance <= farThreshold * 3)) // matching attack conditions
                     StartCoroutine(Attack());
@@ -189,8 +207,26 @@ public class AI : MonoBehaviour
         }
         else if (type == 1)
         {
-            bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * Vector3.forward, transform.rotation);
-            bullet.GetComponent<Bullet>().SetDamage(damage);
+            rayOrigin = transform.position;
+            laserLine.SetPosition(0, rayOrigin);
+            //transform.LookAt(player.transform);
+            laserLine.SetPosition(1, rayOrigin + (transform.forward * 50));
+            controller.Move(Vector3.zero); // while aiming, remove ability to turn and move
+            laserLine.enabled = true;
+            willTurn = false;
+            willMove = false;
+            yield return shotDuration; // damages after delay
+            laserLine.enabled = false;
+            willTurn = true;
+            willMove = true;
+            randomTime = 0;
+            if (Physics.Raycast(rayOrigin, transform.forward, out hit, 50)) // collision check
+            {
+                //if (hit.transform.gameObject.CompareTag("Player") || hit.transform.gameObject.CompareTag("Enemy"))
+                Player health = hit.collider.GetComponent<Player>(); // Damage player
+                if (health != null)
+                    health.Damage(damage);
+            }
         }
         else if (type == 2)
         {
@@ -210,13 +246,13 @@ public class AI : MonoBehaviour
         }
         else if (type == 3)
         {
-            StartCoroutine(bulletEffect());
-            rayOrigin = end.transform.position; // + transform.rotation * new Vector3(0, 2f, 0); // + transform.rotation * new Vector3(0, 2f, 0); // aimCamera.ViewportToWorldPoint(new Vector3(.5f, .5f, 0f));//Origin of the ray is center of the screen
-            
-            laserLine.SetPosition(0, rayOrigin);//Origin of the laser is the end of the gun barrel
-            end.transform.LookAt(player.transform);
-            laserLine.SetPosition(1, rayOrigin + (end.transform.forward * 50));
-
+            bullet = Instantiate(bulletPrefab, end.transform.position + transform.rotation * Vector3.forward, transform.rotation);
+            bullet.GetComponent<Bullet>().SetDamage(damage);
+            bullet.GetComponent<Bullet>().SetSpeed(6);
+            bullet.GetComponent<Bullet>().SetLifetime((distance / 2) / 6);
+            bullet.GetComponent<Bullet>().SetMortar(true);
+            bullet.GetComponent<Bullet>().SetImpact(player.transform.position);
+            bullet.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
     }
     public void Damage(int value)
@@ -224,33 +260,5 @@ public class AI : MonoBehaviour
         health -= value;
         if (health <= 0)
             Destroy(gameObject);
-    }
-    private IEnumerator bulletEffect()
-    {
-        x = 0;
-        z = 0;
-        controller.Move(Vector3.zero); // while aiming, remove ability to turn and move
-        laserLine.enabled = true;
-        willTurn = false;
-        willMove = false;
-        yield return shotDuration;
-        laserLine.enabled = false;
-        willTurn = true;
-        willMove = true;
-        randomTime = 0;
-        if (Physics.Raycast(rayOrigin, end.transform.forward, out hit, 50)) //If we hit something...aimCamera.
-        {
-            //print("hit");
-            //laserLine.SetPosition(1, hit.point);//Set the end of the laser to the thing we hit
-            Player health = hit.collider.GetComponent<Player>();//Get the health of the thing we hit
-            if (health != null)
-                health.Damage(damage);
-
-        }
-        else
-        {
-            //print("miss");
-            //laserLine.SetPosition(1, rayOrigin + (end.transform.forward * 20)); //transform.rotation.eulerAngles * 1
-        }
     }
 }

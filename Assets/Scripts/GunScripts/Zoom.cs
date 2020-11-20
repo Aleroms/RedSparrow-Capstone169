@@ -23,7 +23,7 @@ public class Zoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V) && transform.root == player.transform) //(Input.GetMouseButtonDown(2))
+        if (Input.GetKeyDown(KeyCode.V) && GetComponent<GunController>().isEquipped) //(Input.GetMouseButtonDown(2))
         {
             isZoomed = !isZoomed;
             if (isZoomed && reticle.GetComponent<Image>().sprite != zoom)
