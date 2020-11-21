@@ -5,8 +5,8 @@ using UnityEngine;
 // This script is for hitscan shooting using raycast
 public class ShootingHitscan : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;
+    
+    private GameObject player;//but like why tho <---
     [SerializeField]
     private int type = 1; //What type of fire maode is used. 1 = semi auto, 2 = full auto
     [SerializeField]
@@ -29,6 +29,7 @@ public class ShootingHitscan : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player");
         laserLine = GetComponent<LineRenderer>();
         aimCamera = GetComponentInParent<Camera>();
     }

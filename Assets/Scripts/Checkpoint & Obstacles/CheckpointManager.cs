@@ -109,7 +109,7 @@ public class CheckpointManager : MonoBehaviour
 		*/
 		if(sectionCheckpoint != null)
 		{
-			print("section added");
+			print("section added" + sectionCheckpoint.name);
 			_sectionCheckpoint.Add(sectionCheckpoint);
 		}
 	}

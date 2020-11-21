@@ -7,7 +7,7 @@ using UnityEngine;
 //And then mashed it with code from the shootingHitscan script
 public class ShootingPhysical : MonoBehaviour
 {
-    [SerializeField]
+    //[SerializeField]
     private GameObject player;
     [SerializeField]
     private int type = 1; //What type of fire maode is used. 1 = semi auto, 2 = full auto
@@ -22,8 +22,12 @@ public class ShootingPhysical : MonoBehaviour
 
     private float nextFireTime;//This used with fireRate determines when the gun can fire
 
-    // Start is called before the first frame update
-    void Update()
+	// Start is called before the first frame update
+	private void Start()
+	{
+        player = GameObject.Find("Player");
+	}
+	void Update()
     {
         if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 1)
         {

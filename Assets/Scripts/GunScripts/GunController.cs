@@ -10,8 +10,8 @@ public class GunController : MonoBehaviour
     private Rigidbody gunRB;//This is the gun's rigid body
     [SerializeField]
     private BoxCollider gunBC;//This is the gun's box collider
-    [SerializeField]
-    private GameObject player;//This is the player
+    //[SerializeField]
+    private GameObject player;//This is the player; but like why tho
     [SerializeField]
     private Transform hand;//We need to know where the hand is 
     [SerializeField]
@@ -41,6 +41,7 @@ public class GunController : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player");
         PammoCount = Random.Range(0, maxAmmoCount+1);// First, we will give the gun a random amount of ammo (Ammo cant exceed the max set earlier)
         SammoCount = Random.Range(0, maxAmmoCount + 1);
 
@@ -50,6 +51,7 @@ public class GunController : MonoBehaviour
         else {//If the gun is equiped, then certain things will be set to true
             setThingsTrue();
         }
+        //Player = GameObject.Find("Main Camera");//i want to add a way to get the main camera w/o dragging & dropping it in
         reticlePlayer = GameObject.Find("Reticle").GetComponent<Image>();
         pickupPrompt = GameObject.Find("Pickup Prompt").GetComponent<Text>();
     }
