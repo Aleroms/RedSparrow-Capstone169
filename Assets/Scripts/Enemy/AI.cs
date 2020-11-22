@@ -70,13 +70,19 @@ public class AI : MonoBehaviour
     }
     void Update()
     {
+        distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
         losChecker.transform.LookAt(player.transform); // check if enemy has line-of-sight of player
-        if (Physics.Raycast(losChecker.transform.position, losChecker.transform.forward, out hit)) //layerMask
-        {
-            if (hit.transform.gameObject.CompareTag("Player"))
-                canSeePlayer = true;
-            else
-                canSeePlayer = false;
+        if (distance <= nearThreshold) // can act regardless if close enough to player
+            canSeePlayer = true;
+        else
+        { 
+            if (Physics.Raycast(losChecker.transform.position, losChecker.transform.forward, out hit)) //layerMask
+            {
+                if (hit.transform.gameObject.CompareTag("Player"))
+                    canSeePlayer = true;
+                else
+                    canSeePlayer = false;
+            }
         }
         if (type != 1) // gravity
         {
@@ -92,7 +98,6 @@ public class AI : MonoBehaviour
         if (isOn) // enable AI
         {
             name = nameArray[type] + " (" + (int)transform.position.x + ", " + (int)transform.position.y + ", " + (int)transform.position.z + ")"; // update name to show world position
-            distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
             if (willTurn && canSeePlayer) // look at player
             {
                 formerRotation = transform.rotation.eulerAngles;
