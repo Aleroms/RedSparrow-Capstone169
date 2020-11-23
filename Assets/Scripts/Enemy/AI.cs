@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Enemy Types: 0 = spider, 1 = drone, 2 = racer, 3 = walker
 public class AI : MonoBehaviour
 {
     public int type;
