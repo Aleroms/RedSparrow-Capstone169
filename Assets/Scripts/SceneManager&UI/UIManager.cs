@@ -8,11 +8,22 @@ public class UIManager : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject _OnPlayerDeath_Panel;
-	[SerializeField]
+    [SerializeField]
+    private GameObject _Rety_Button;
+    [SerializeField]
 	private GameObject _gameover_text;
 	private bool temp = true;
+    private bool mfaded = false;
+    public float duration = 20f;
+    private CheckpointManager checkpointManager;
 
-	[SerializeField]
+    private void Start()
+    {
+        checkpointManager = GameObject.Find("CheckpointManager").GetComponent<CheckpointManager>();
+    }
+
+
+    [SerializeField]
 	private float textFlickerSpeed = 0.4f;
 
 	public void PlayGame()
@@ -33,13 +44,18 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 0f;
 		Cursor.lockState = CursorLockMode.None;
 		_OnPlayerDeath_Panel.SetActive(true);
+        if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().livesLeft() == -1)
+        {
+            _Rety_Button.SetActive(false);
+        }
 		StartCoroutine(GameOverCoroutine());
 		//SceneManager.LoadScene("Credits");
 		//set game over panel on
 		//should have a button that quits
 		//should have button that takes to main menu
 	}
-	IEnumerator GameOverCoroutine()
+
+    IEnumerator GameOverCoroutine()
 	{
 		while(true)
 		{
@@ -55,4 +71,19 @@ public class UIManager : MonoBehaviour
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(0);
 	}
+
+
+
+    public void RetryCheckPoint()
+    {
+        if(_OnPlayerDeath_Panel.activeSelf)
+        {
+            _OnPlayerDeath_Panel.SetActive(false);
+        }
+        checkpointManager.DeadZone();
+        Time.timeScale = 1f;
+    }
+
+
+
 }

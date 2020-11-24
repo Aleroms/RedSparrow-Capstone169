@@ -638,6 +638,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d319ce4df2d1eb45a900ec82555801f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OnPlayerDeath_Panel: {fileID: 0}
+  _HasLives_Panel: {fileID: 0}
+  _gameover_text: {fileID: 0}
+  duration: 20
+  textFlickerSpeed: 0.4
 --- !u!114 &5368235197007211593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,6 +659,7 @@ MonoBehaviour:
   _OptionsMenuPanel: {fileID: 4594788473946673622}
   _healthBar: {fileID: 4682939394868171817}
   _staminaBar: {fileID: 1243656089853443315}
+  _recticle: {fileID: 0}
   mouseInput: {fileID: 3196529290105440615}
   volumeInput: {fileID: 7401112204207813297}
   mouseSlider: {fileID: 4594788473779793226}

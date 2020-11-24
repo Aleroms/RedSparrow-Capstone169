@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
         //freezes time
         //Time.timeScale = 0;
         //Cursor.lockState = CursorLockMode.None;
+
         _UIManager.GameOver();
+ 
         //set some UI up to say "GAME OVER"
         //freeze time
         //UI should have some way to get back to main menu

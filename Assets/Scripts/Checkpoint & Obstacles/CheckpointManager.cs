@@ -148,7 +148,7 @@ public class CheckpointManager : MonoBehaviour
 			_player.transform.position = _currentCheckpoint.position;
 		
 
-			StartCoroutine(CCEnableRoutine(cc));
+		StartCoroutine(CCEnableRoutine(cc));
 		
 		IEnumerator CCEnableRoutine(CharacterController cc)
 		{

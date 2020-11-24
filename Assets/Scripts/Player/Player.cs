@@ -40,8 +40,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private int _health;
 	private int _maxHealth = 100;
+    public int _lives = 3;
 
-	[SerializeField]
+   [SerializeField]
 	private Transform _groundCheck;
 	[SerializeField]
 	private Transform _ceilingCheck;
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
 	private LayerMask _groundMask;
 	
 	private Vector3 _velocity;
+   
 
 	private PlayerUI _pUI;
 	private GameManager _gm;
@@ -113,10 +115,21 @@ public class Player : MonoBehaviour
 		_pUI.HealthBar(_health);
 
         if (_health <= 0) {
-			_gm.OnPlayerDeath();
+            _lives -= 1;
+            _gm.OnPlayerDeath();
+            if(_lives != -1)
+            {
+                _health = _maxHealth;
+            }
+           
         }
 			
 	}
+
+    public int livesLeft()
+    {
+        return _lives;
+    }
 
 	void Movement()//function works properly when proper layerMask is set to ground. 
 	{	//returns true if player is grounded
@@ -191,7 +204,6 @@ public class Player : MonoBehaviour
 		if(_pUI != null)
 			_pUI.StaminaBar(_stamina);
 	}
-	
 	
 	
 }
