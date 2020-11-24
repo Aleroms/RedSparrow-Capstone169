@@ -31,9 +31,10 @@ public class Bullet : MonoBehaviour
                 for (int i = 0; i < 10; ++i) // shotgun
                 {
                     GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * Vector3.forward, transform.rotation);
+                    //bullet.transform.LookAt(impactArea);
                     bullet.GetComponent<Bullet>().SetDamage(6);
-                    bullet.GetComponent<Bullet>().SetLifetime(2);
-                    bullet.GetComponent<Bullet>().SetSpeed(10);
+                    bullet.GetComponent<Bullet>().SetLifetime(5);
+                    bullet.GetComponent<Bullet>().SetSpeed(25);
                     bullet.transform.Rotate(Random.Range(-spread, spread), Random.Range(-spread, spread), Random.Range(-spread, spread));
                     bullet.GetComponent<Bullet>().isMortar = false;
                     bullet.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
