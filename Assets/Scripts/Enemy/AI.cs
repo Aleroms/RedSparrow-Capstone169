@@ -27,7 +27,8 @@ public class AI : MonoBehaviour
     private GameObject end, losChecker;
     private RaycastHit hit;
     private Vector3 rayOrigin;
-    private int layerMask = 1 << 9;
+    // private int layerMask = 1 << 11;
+    private LayerMask mask; // = LayerMask.GetMask("Checkpoints");
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -69,6 +70,9 @@ public class AI : MonoBehaviour
         }
         losChecker = gameObject.transform.GetChild(0).gameObject;
         losChecker.transform.localPosition = new Vector3(0, controller.height / 3, 0); // elevate los to roughly head height
+        //mask = LayerMask.GetMask("Checkpoints");
+        //mask = ~mask;
+
     }
     void Update()
     {
@@ -77,15 +81,19 @@ public class AI : MonoBehaviour
         if (distance <= nearThreshold) // can act regardless if close enough to player
             canSeePlayer = true;
         else
-        { 
+        {
+            //int layerMask = 1 << 11;
+            //layerMask = ~layerMask;
             if (Physics.Raycast(losChecker.transform.position, losChecker.transform.forward, out hit)) //layerMask
             {
-                if (hit.transform.gameObject.CompareTag("Player"))
+                //print(hit.transform.gameObject.name);
+                if (hit.transform.root.gameObject == player)
                     canSeePlayer = true;
                 else
                     canSeePlayer = false;
             }
         }
+        //print(canSeePlayer);
         if (type != 1) // gravity
         {
             if (!controller.isGrounded) // acceleration when midair
@@ -205,7 +213,7 @@ public class AI : MonoBehaviour
     }
     IEnumerator Attack()
     {
-        cooldown = attackCooldown;
+        cooldown = Random.Range(attackCooldown, attackCooldown * 1.5f);
         if (type == 0)
         {
             yield return new WaitForSeconds(0.5f); // delay before swing
