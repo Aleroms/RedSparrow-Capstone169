@@ -184,7 +184,7 @@ public class Player : MonoBehaviour
 		// I wanted to stop player from jumping, then sprinting.
 		//don't want player to sprint if crouching
 
-		if (Input.GetKey(KeyCode.LeftShift) && _iscrouching == false && _isgrounded && _stamina > 0.2f)
+		if (Input.GetKey(KeyCode.LeftShift) && _iscrouching == false /*&& _isgrounded*/ && _stamina > 0.2f)
 		{
 			_stamina -= Time.deltaTime;
 			_speed = _sprintSpeed;
