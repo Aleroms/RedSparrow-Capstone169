@@ -14,6 +14,8 @@ public class PauseMenuUI : MonoBehaviour
 	[SerializeField]
 	private GameObject _OptionsMenuPanel;
 	[SerializeField]
+	private GameObject _popUpPromptPanel;
+	[SerializeField]
 	private GameObject _healthBar;
 	[SerializeField]
 	private GameObject _staminaBar;
@@ -25,6 +27,7 @@ public class PauseMenuUI : MonoBehaviour
 
 	public Text mouseInput;
 	public Text volumeInput;
+	public Text popUpText;
 
 	public Slider mouseSlider;
 	public Slider volumeSlider;
@@ -36,7 +39,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.P))
 		{
 			if (_isPaused == false)
 				Pause();
@@ -102,4 +105,17 @@ public class PauseMenuUI : MonoBehaviour
         //StatsData.volumeLevel = input;
         player.GetComponent<PlayerStatTrack>().setVolumeLevel(input);
     }
+	public void PopUpPromptEnable(string popup)
+	{
+		Time.timeScale = 0f;
+		Cursor.lockState = CursorLockMode.None;
+		_popUpPromptPanel.SetActive(true);
+		popUpText.text = popup;
+	}
+	public void PopUpPromptDisable()
+	{
+		Time.timeScale = 1f;
+		Cursor.lockState = CursorLockMode.Locked;
+		_popUpPromptPanel.SetActive(false);
+	}
 }

@@ -41,7 +41,9 @@ public class Checkpoint : MonoBehaviour
 		//visual signal to show checkpoint is deactivated
 		Material mat = this.GetComponent<Renderer>().material;
 		mat.color = new Color(1f, 0f, 0f);
-		_trigger = false;
+		//the commented-out code below lets programmers 
+		//allow reactivation of the checkpoint
+		//_trigger = false;
 	}
 	
 }
