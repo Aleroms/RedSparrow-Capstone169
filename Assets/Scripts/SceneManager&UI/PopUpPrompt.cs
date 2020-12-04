@@ -9,6 +9,7 @@ public class PopUpPrompt : MonoBehaviour
     private string popUpPrompt;
 
 	private PauseMenuUI _pause;
+	private bool __hasTriggered = false;
 
 	private void Start()
 	{
@@ -20,7 +21,11 @@ public class PopUpPrompt : MonoBehaviour
 	{
 		if(other.CompareTag("Player"))
 		{
-			_pause.PopUpPromptEnable(popUpPrompt);
+			if(__hasTriggered == false)
+			{
+				_pause.PopUpPromptEnable(popUpPrompt);
+				__hasTriggered = true;
+			}
 		}
 	}
 }

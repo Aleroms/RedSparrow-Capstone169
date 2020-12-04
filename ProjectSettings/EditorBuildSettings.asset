@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Prototype_Levels/ProtoLevel_3.unity
     guid: d3f978ec5205be64cb9639de3a0d20b0
   - enabled: 1
+    path: Assets/Scenes/Prototype_Levels/ProtoLevel_3B.unity
+    guid: eb7c470877a530e4a8aa793d38b121cc
+  - enabled: 1
     path: Assets/Scenes/Menus/Credits.unity
     guid: 00a35e68bc8b4f64780c6b5d551cdf72
   m_configObjects: {}

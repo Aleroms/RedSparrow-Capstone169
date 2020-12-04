@@ -23,6 +23,7 @@ public class PauseMenuUI : MonoBehaviour
 	private GameObject _recticle;
     private Player player;
 
+	
 	private bool _isPaused = false;
 
 	public Text mouseInput;
@@ -107,6 +108,7 @@ public class PauseMenuUI : MonoBehaviour
     }
 	public void PopUpPromptEnable(string popup)
 	{
+		_isPaused = true;
 		Time.timeScale = 0f;
 		Cursor.lockState = CursorLockMode.None;
 		_popUpPromptPanel.SetActive(true);
@@ -114,6 +116,7 @@ public class PauseMenuUI : MonoBehaviour
 	}
 	public void PopUpPromptDisable()
 	{
+		_isPaused = false;
 		Time.timeScale = 1f;
 		Cursor.lockState = CursorLockMode.Locked;
 		_popUpPromptPanel.SetActive(false);
