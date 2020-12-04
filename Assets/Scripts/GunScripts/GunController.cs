@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 public class GunController : MonoBehaviour
 {
@@ -42,8 +43,8 @@ public class GunController : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        PammoCount = Random.Range(0, maxAmmoCount+1);// First, we will give the gun a random amount of ammo (Ammo cant exceed the max set earlier)
-        SammoCount = Random.Range(0, maxAmmoCount + 1);
+        PammoCount = maxAmmoCount;// First, we will give the gun a max amount of ammo (Ammo cant exceed the max set earlier)
+        SammoCount = maxAmmoCount;
 
         if (!isEquipped) { // If the gun is not equiped, certain things must be set false, they will be explained below
             setThingsFalse();
@@ -101,8 +102,8 @@ public class GunController : MonoBehaviour
             SwitchFireType();//Then switch the ammo type
         }
         //If the player has a gun and presses the key to reolad the gun
-        if (isEquipped && Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getReloadKey())) {
-            reload();//Then reload the gun....
+        if (isEquipped && (Input.GetKeyDown(player.GetComponent<PlayerKeyBindings>().getReloadKey()) || PammoCount == 0)) {
+            StartCoroutine(reload());//Then reload the gun....
         }
     }
 
@@ -236,7 +237,8 @@ public class GunController : MonoBehaviour
     }
 
     //When you reload///
-    void reload() {
+    IEnumerator reload() {
+        yield return new WaitForSeconds(.5f);
         int ammoNeeded = maxAmmoCount - PammoCount;//First we need to know how much ammo we need
         int ammoGotten = 0;
         //Next we figure out which type of ammo we need
