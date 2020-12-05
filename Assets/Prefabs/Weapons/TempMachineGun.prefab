@@ -379,6 +379,7 @@ MonoBehaviour:
   pickupPromptTimer: 0
   spread: 0
   spreadCooldown: 0
+  isReloading: 0
 --- !u!1 &245839652805090736
 GameObject:
   m_ObjectHideFlags: 0

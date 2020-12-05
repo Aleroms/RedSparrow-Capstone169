@@ -29,6 +29,8 @@ public class AI : MonoBehaviour
     private Vector3 rayOrigin;
     // private int layerMask = 1 << 11;
     private LayerMask mask; // = LayerMask.GetMask("Checkpoints");
+    [SerializeField]
+    private Vector3 targetPosition;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -76,23 +78,28 @@ public class AI : MonoBehaviour
     }
     void Update()
     {
-        distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
-        losChecker.transform.LookAt(player.transform); // check if enemy has line-of-sight of player
-        if (distance <= nearThreshold) // can act regardless if close enough to player
+        if (targetPosition != Vector3.zero)
             canSeePlayer = true;
         else
-        {
+            canSeePlayer = false;
+        distance = Vector3.Distance(player.transform.position, this.transform.position); // check distance between this and player
+        losChecker.transform.LookAt(player.transform); // check if enemy has line-of-sight of player
+        //if (distance <= nearThreshold) // can act regardless if close enough to player
+            //canSeePlayer = true;
+        //else
+        //{
             //int layerMask = 1 << 11;
             //layerMask = ~layerMask;
             if (Physics.Raycast(losChecker.transform.position, losChecker.transform.forward, out hit)) //layerMask
             {
                 //print(hit.transform.gameObject.name);
                 if (hit.transform.root.gameObject == player)
-                    canSeePlayer = true;
-                else
-                    canSeePlayer = false;
+                    //canSeePlayer = true;
+                    targetPosition = player.transform.position;
+                //else
+                    //canSeePlayer = false;
             }
-        }
+        //}
         //print(canSeePlayer);
         if (type != 1) // gravity
         {
@@ -112,9 +119,9 @@ public class AI : MonoBehaviour
             {
                 formerRotation = transform.rotation.eulerAngles;
                 if (type == 1) // only flier can tilt in y-axis
-                    transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+                    transform.LookAt(new Vector3(targetPosition.x, targetPosition.y, targetPosition.z));
                 else
-                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    transform.LookAt(new Vector3(targetPosition.x, transform.position.y, targetPosition.z));
             }
             if (willMove && canSeePlayer) // move to target
             {
@@ -252,7 +259,7 @@ public class AI : MonoBehaviour
                 else
                     bullet = Instantiate(bulletPrefab, transform.position + transform.rotation * new Vector3(-0.2f, 0.5f, 1), transform.rotation);
                 fireFromRight = !fireFromRight;
-                bullet.transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+                bullet.transform.LookAt(new Vector3(targetPosition.x, targetPosition.y, targetPosition.z));
                 bullet.GetComponent<Bullet>().SetDamage(damage);
                 yield return new WaitForSeconds(0.33f);
             }
@@ -266,7 +273,7 @@ public class AI : MonoBehaviour
             bullet.GetComponent<Bullet>().SetSpeed(6);
             bullet.GetComponent<Bullet>().SetLifetime((distance / 2) / 6);
             bullet.GetComponent<Bullet>().SetMortar(true);
-            bullet.GetComponent<Bullet>().SetImpact(player.transform.position);
+            bullet.GetComponent<Bullet>().SetImpact(targetPosition);
             bullet.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
     }

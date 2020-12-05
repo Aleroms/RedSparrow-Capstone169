@@ -13,6 +13,7 @@ public class PlayerKeyBindings : MonoBehaviour
         public string switchFireType;
         public string reload;
         public string switchGuns;
+        public string zoom;
     }
 
     [SerializeField]
@@ -44,6 +45,10 @@ public class PlayerKeyBindings : MonoBehaviour
     public string getSwitchGunsKey() {
         return PlayerPrefs.GetString("switchGuns", keyBindings.switchGuns);
     }
+    public string getZoomKey()
+    {
+        return PlayerPrefs.GetString("zoom", keyBindings.zoom);
+    }
 
 
     public void setshootGun(string input) {
@@ -67,6 +72,10 @@ public class PlayerKeyBindings : MonoBehaviour
     {
         PlayerPrefs.SetString("switchGuns", input);
     }
+    public void setZoomKey(string input)
+    {
+        PlayerPrefs.SetString("zoom", input);
+    }
 
     public void resetKeyBindings() {
         PlayerPrefs.SetString("shoot", keyBindings.shoot);
@@ -75,5 +84,6 @@ public class PlayerKeyBindings : MonoBehaviour
         PlayerPrefs.SetString("switchFireType", keyBindings.switchFireType);
         PlayerPrefs.SetString("reload", keyBindings.reload);
         PlayerPrefs.SetString("switchGuns", keyBindings.switchGuns);
+        PlayerPrefs.SetString("zoom", keyBindings.zoom);
     }
 }

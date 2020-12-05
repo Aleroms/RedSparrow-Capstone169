@@ -113,7 +113,6 @@ MonoBehaviour:
   bulletScript: {fileID: 4297523751006722407}
   gunRB: {fileID: 4297523751006722404}
   gunBC: {fileID: 4297523751006722405}
-  player: {fileID: 0}
   hand: {fileID: 0}
   playerCamera: {fileID: 0}
   pickUpRange: 3
@@ -128,8 +127,12 @@ MonoBehaviour:
   reticleGun: {fileID: 21300000, guid: e623dc0da301a384ebf656aef449a39e, type: 3}
   reticlePlayer: {fileID: 0}
   reticleDefault: {fileID: 21300000, guid: f4376751e828ff3419e7799da157503c, type: 3}
+  reticleUnzoom: {fileID: 0}
   pickupPrompt: {fileID: 0}
   pickupPromptTimer: 0
+  spread: 0
+  spreadCooldown: 0
+  isReloading: 0
 --- !u!114 &4297523751006722407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0647b3a773a575a4da69caf773b30d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   type: 1
   semifireRate: 0.25
   autofireRate: 0.25

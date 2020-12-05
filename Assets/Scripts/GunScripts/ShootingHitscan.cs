@@ -26,6 +26,7 @@ public class ShootingHitscan : MonoBehaviour
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);// This is how long the lazer will last onscreen
     private LineRenderer laserLine;// This is the laser
     private float nextFireTime;//This used with fireRate determines when the gun can fire
+    private float spreadScalar = 0.05f;
 
     void Start()
     {
@@ -36,13 +37,13 @@ public class ShootingHitscan : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 1)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 1 && !GetComponent<GunController>().isReloading)
         {
             setCoolDown();
             StartCoroutine(bulletEffect());
             Shoot();
         }
-        else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 2) {
+        else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 2 && !GetComponent<GunController>().isReloading) {
             setCoolDown();
             StartCoroutine(bulletEffect());
             Shoot();
@@ -55,7 +56,10 @@ public class ShootingHitscan : MonoBehaviour
         Vector3 rayOrigin = aimCamera.ViewportToWorldPoint(new Vector3(.5f,.5f,0f));//Origin of the ray is center of the screen
         RaycastHit hit;
         laserLine.SetPosition(0, gunEnd.position);//Origin of the laser is the end of the gun barrel
-        if (Physics.Raycast(rayOrigin, aimCamera.transform.forward, out hit, weaponRange)) //If we hit something...
+        float spreadX = GetComponent<GunController>().spread * spreadScalar * Random.Range(-1f, 1f);
+        float spreadY = GetComponent<GunController>().spread * spreadScalar * Random.Range(-1f, 1f);
+        float spreadZ = GetComponent<GunController>().spread * spreadScalar * Random.Range(-1f, 1f);
+        if (Physics.Raycast(rayOrigin, aimCamera.transform.forward + new Vector3(spreadX, spreadY, spreadZ), out hit, weaponRange)) //If we hit something...
         {
             laserLine.SetPosition(1, hit.point);//Set the end of the laser to the thing we hit
             AI health = hit.collider.GetComponent<AI>();//Get the health of the thing we hit
@@ -68,9 +72,17 @@ public class ShootingHitscan : MonoBehaviour
             }
         }
         else {//If we hit nothing, set the end of the laser to it's max range
-            laserLine.SetPosition(1, rayOrigin + (aimCamera.transform.forward * weaponRange));
+            laserLine.SetPosition(1, rayOrigin + (aimCamera.transform.forward + new Vector3(spreadX, spreadY, spreadZ)) * weaponRange);
         }
         gameObject.GetComponent<GunController>().decreaseAmmo();
+        if (name.Contains("MachineGun") && GetComponent<GunController>().isEquipped) // randomized spread for machine gun
+        {
+            //bullet.transform.Rotate(GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f), GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f), GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f));
+            GetComponent<GunController>().spread += autofireRate;
+            GetComponent<GunController>().spreadCooldown = GetComponent<GunController>().spread;
+            if (GetComponent<GunController>().spread > 3) // spread cap
+                GetComponent<GunController>().spread = 3;
+        }
     }
 
     void setCoolDown()

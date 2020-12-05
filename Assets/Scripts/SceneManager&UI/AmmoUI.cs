@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class AmmoUI : MonoBehaviour
@@ -10,9 +11,9 @@ public class AmmoUI : MonoBehaviour
     private PlayerStatTrack playerStatTrack; //The playerStatTrack script attached to the player
     private GunController gun; //If the player is holding a gun, its script will go here
     [SerializeField]
-    private TextMeshProUGUI ammoText; //The component that will show the ammo count in the UI
+    private Text ammoText; //The component that will show the ammo count in the UI
     [SerializeField]
-    private TextMeshProUGUI secondary;
+    private Text secondary;
     private InventoryController inventory;
 
 
@@ -21,6 +22,8 @@ public class AmmoUI : MonoBehaviour
         //better way is to GameObject.Find or FindGameObjectWithTag
         playerStatTrack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatTrack>();//player.GetComponent<PlayerStatTrack>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryController>();//player.GetComponent<InventoryController>();
+        ammoText = transform.GetChild(0).gameObject.GetComponent<Text>();
+        secondary = transform.GetChild(1).gameObject.GetComponent<Text>();
     }
     // Update is called once per frame
     void Update()
@@ -52,32 +55,33 @@ public class AmmoUI : MonoBehaviour
         else if (!playerStatTrack.getHasGun1())
 
         {
-            ammoText.text = "--/--";
+            ammoText.text = "None";
         }
         if (inventory.hasGun2())
         {
             if (inventory.secondgun().getGunType() == 1)
             {
-                secondary.text = "On hold: Pistol";
+                //secondary.text = "On hold: Pistol";
+                secondary.text = "Pistol " + inventory.secondgun().getAmmoCount() + "/" + playerStatTrack.getLittleAmmoPool();
             }
             else if (inventory.secondgun().getGunType() == 2 && inventory.secondgun().hasSGunType())
             {
-                secondary.text = "On hold: Machine Gun";
+                secondary.text = "Machine Gun " + inventory.secondgun().getAmmoCount() + "/" + playerStatTrack.getLargeAmmoPool();
             }
             else if (inventory.secondgun().getGunType() == 3 && inventory.secondgun().hasSGunType())
             {
-                secondary.text = "On hold: Machine Gun";
+                secondary.text = "Machine Gun  " + inventory.secondgun().getAmmoCount() + "/" + playerStatTrack.getLaserAmmoPool();
             }
             else if (inventory.secondgun().getGunType() == 3)
             {
-                secondary.text = "On hold: Sniper";
+                secondary.text = "Sniper " + inventory.secondgun().getAmmoCount() + "/" + playerStatTrack.getLaserAmmoPool();
             }
             
 
         }
         else if(!inventory.hasGun2())
         {
-            secondary.text = "";
+            secondary.text = "None";
         }
        
     }

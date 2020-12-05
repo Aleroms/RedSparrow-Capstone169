@@ -234,6 +234,7 @@ MonoBehaviour:
     switchFireType: x
     reload: r
     switchGuns: z
+    zoom: Mouse1
 --- !u!136 &436614522
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -266,8 +267,7 @@ MonoBehaviour:
     laserAmmoPool: 0
     hasGun1: 0
     hasGun2: 0
-    Mission1Time: 0
-    Mission1Kills: 0
+    MissionKills: 0
     mouseSensitivity: 0
     volumeLevel: 0
 --- !u!114 &917157438

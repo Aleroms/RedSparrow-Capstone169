@@ -39,6 +39,7 @@ public class GunController : MonoBehaviour
     public Text pickupPrompt;
     public float pickupPromptTimer;
     public float spread, spreadCooldown;
+    public bool isReloading;
 
     void Start()
     {
@@ -238,7 +239,9 @@ public class GunController : MonoBehaviour
 
     //When you reload///
     IEnumerator reload() {
+        isReloading = true;
         yield return new WaitForSeconds(.5f);
+        isReloading = false;
         int ammoNeeded = maxAmmoCount - PammoCount;//First we need to know how much ammo we need
         int ammoGotten = 0;
         //Next we figure out which type of ammo we need

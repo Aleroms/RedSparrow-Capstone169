@@ -29,12 +29,12 @@ public class ShootingPhysical : MonoBehaviour
 	}
 	void Update()
     {
-        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 1)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 1 && !GetComponent<GunController>().isReloading)
         {
             setCoolDown();
             Shoot();
         }
-        else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 2)
+        else if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), player.GetComponent<PlayerKeyBindings>().getshootGun())) && Time.time > nextFireTime && type == 2 && !GetComponent<GunController>().isReloading)
         {
             setCoolDown();
             Shoot();
@@ -46,14 +46,6 @@ public class ShootingPhysical : MonoBehaviour
         player.GetComponent<AccuracyCounter>().ShotsFired();
         GameObject bullet = Instantiate(_bulletPrefab, gunEnd.position, gunEnd.rotation);
         gameObject.GetComponent<GunController>().decreaseAmmo();
-        if (name.Contains("MachineGun") && GetComponent<GunController>().isEquipped) // randomized spread for machine gun
-        {
-            bullet.transform.Rotate(GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f), GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f), GetComponent<GunController>().spread * 2 * Random.Range(-1f, 1f));
-            GetComponent<GunController>().spread += autofireRate;
-            GetComponent<GunController>().spreadCooldown = GetComponent<GunController>().spread;
-            if (GetComponent<GunController>().spread > 3) // spread cap
-                GetComponent<GunController>().spread = 3;
-        }
     }
 
     void setCoolDown()
