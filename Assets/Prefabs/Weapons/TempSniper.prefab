@@ -600,6 +600,7 @@ MonoBehaviour:
   spread: 0
   spreadCooldown: 0
   isReloading: 0
+  gunType: Sniper
 --- !u!114 &5874952970862044118
 MonoBehaviour:
   m_ObjectHideFlags: 0

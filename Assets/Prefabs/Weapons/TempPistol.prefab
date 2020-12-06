@@ -133,6 +133,7 @@ MonoBehaviour:
   spread: 0
   spreadCooldown: 0
   isReloading: 0
+  gunType: Pistol
 --- !u!114 &4297523751006722407
 MonoBehaviour:
   m_ObjectHideFlags: 0

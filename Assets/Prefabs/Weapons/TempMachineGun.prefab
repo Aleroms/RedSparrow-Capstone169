@@ -380,6 +380,7 @@ MonoBehaviour:
   spread: 0
   spreadCooldown: 0
   isReloading: 0
+  gunType: Machine Gun
 --- !u!1 &245839652805090736
 GameObject:
   m_ObjectHideFlags: 0

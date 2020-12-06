@@ -260,6 +260,12 @@ MonoBehaviour:
   - 1.5
   - 1
   - 0.75
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
+  targetPosition: {x: 0, y: 0, z: 0}
+  redMaterial: {fileID: 2100000, guid: c93dc9a449b42d5438671a85924f8996, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 45dbdc806406064479cc6f0e6b22d441, type: 2}
 --- !u!1 &6791760429467334308
 GameObject:
   m_ObjectHideFlags: 0

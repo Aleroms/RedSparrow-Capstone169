@@ -28,9 +28,11 @@ public class AI : MonoBehaviour
     private RaycastHit hit;
     private Vector3 rayOrigin;
     // private int layerMask = 1 << 11;
-    private LayerMask mask; // = LayerMask.GetMask("Checkpoints");
+    public LayerMask mask; // = LayerMask.GetMask("Checkpoints");
     [SerializeField]
     private Vector3 targetPosition;
+    public Material redMaterial, greenMaterial;
+    private float spread = 0.25f;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -229,26 +231,36 @@ public class AI : MonoBehaviour
         }
         else if (type == 1)
         {
+            laserLine.material = greenMaterial;
             rayOrigin = transform.position;
             laserLine.SetPosition(0, rayOrigin);
-            //transform.LookAt(player.transform);
-            laserLine.SetPosition(1, rayOrigin + (transform.forward * 50));
+            transform.LookAt(targetPosition + new Vector3(Random.Range(-spread, spread), Random.Range(spread, spread), Random.Range(spread, spread)));
+            if (Physics.Raycast(rayOrigin, transform.forward, out hit, 20, mask)) // first tracer, only stops against ground layer
+                laserLine.SetPosition(1, hit.point);//Set the end of the laser to the thing we hit
+            else
+                laserLine.SetPosition(1, rayOrigin + (transform.forward * 20));
             controller.Move(Vector3.zero); // while aiming, remove ability to turn and move
             laserLine.enabled = true;
             willTurn = false;
             willMove = false;
             yield return shotDuration; // damages after delay
-            laserLine.enabled = false;
+            //laserLine.enabled = false;
             willTurn = true;
             willMove = true;
             randomTime = 0;
-            if (Physics.Raycast(rayOrigin, transform.forward, out hit, 50)) // collision check
+            if (Physics.Raycast(rayOrigin, transform.forward, out hit, 20)) // actual shot, collides with anything
             {
+                laserLine.SetPosition(1, hit.point);
                 //if (hit.transform.gameObject.CompareTag("Player") || hit.transform.gameObject.CompareTag("Enemy"))
                 Player health = hit.collider.GetComponent<Player>(); // Damage player
                 if (health != null)
                     health.Damage(damage);
             }
+            else
+                laserLine.SetPosition(1, rayOrigin + (transform.forward * 20));
+            laserLine.material = redMaterial;
+            yield return new WaitForSeconds(0.07f); // damages after delay
+            laserLine.enabled = false;
         }
         else if (type == 2)
         {
@@ -281,6 +293,12 @@ public class AI : MonoBehaviour
     {
         health -= value;
         if (health <= 0)
+        {
             Destroy(gameObject);
+            GameObject canvas = GameObject.Find("Canvas");
+            if (canvas.GetComponent<LevelTwoKillCounter>() != null)
+                canvas.GetComponent<LevelTwoKillCounter>().DetectKill();
+        }
+            
     }
 }

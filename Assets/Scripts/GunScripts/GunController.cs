@@ -40,6 +40,8 @@ public class GunController : MonoBehaviour
     public float pickupPromptTimer;
     public float spread, spreadCooldown;
     public bool isReloading;
+    public string gunType;
+    public float reloadTime = 0.5f;
 
     void Start()
     {
@@ -56,6 +58,7 @@ public class GunController : MonoBehaviour
         //Player = GameObject.Find("Main Camera");//i want to add a way to get the main camera w/o dragging & dropping it in
         reticlePlayer = GameObject.Find("Reticle").GetComponent<Image>();
         pickupPrompt = GameObject.Find("Pickup Prompt").GetComponent<Text>();
+        // name = gunType;
     }
 
     void Update()
@@ -74,11 +77,12 @@ public class GunController : MonoBehaviour
             if (spreadCooldown < 0)
                 spreadCooldown = 0;
         }
-        if (spread > 0)
+        if (spread >= 0)
         {
+            reticlePlayer.gameObject.transform.localScale = new Vector3(1 + spread / 1.5f, 1 + spread / 1.5f, 1 + spread / 1.5f);
             if (spreadCooldown <= 0)
                 spread -= Time.deltaTime;
-            reticlePlayer.gameObject.transform.localScale = new Vector3(1 + spread / 1.5f, 1 + spread / 1.5f, 1 + spread / 1.5f);
+            
             if (spread < 0)
                 spread = 0;
         }
@@ -240,7 +244,7 @@ public class GunController : MonoBehaviour
     //When you reload///
     IEnumerator reload() {
         isReloading = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(reloadTime);
         isReloading = false;
         int ammoNeeded = maxAmmoCount - PammoCount;//First we need to know how much ammo we need
         int ammoGotten = 0;
