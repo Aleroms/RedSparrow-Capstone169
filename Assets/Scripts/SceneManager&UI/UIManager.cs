@@ -80,7 +80,8 @@ public class UIManager : MonoBehaviour
         {
             _OnPlayerDeath_Panel.SetActive(false);
         }
-        checkpointManager.DeadZone();
+        if(checkpointManager != null)
+			checkpointManager.DeadZone();
         Time.timeScale = 1f;
     }
 
