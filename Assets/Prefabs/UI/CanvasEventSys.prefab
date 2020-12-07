@@ -3310,7 +3310,7 @@ MonoBehaviour:
   _popUpPromptPanel: {fileID: 1289265192}
   _healthBar: {fileID: 8645181685946090438}
   _staminaBar: {fileID: 4907689722185978744}
-  _recticle: {fileID: 0}
+  _recticle: {fileID: 3914124026792723574}
   mouseInput: {fileID: 2136474956815160963}
   volumeInput: {fileID: 4625535079602297245}
   popUpText: {fileID: 131792840}
@@ -5053,6 +5053,12 @@ PrefabInstance:
 --- !u!224 &3914124026792723575 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3025002510045031999, guid: f296a6af421adc14bb730e9a459ee3ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 2281975708583160392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3914124026792723574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3025002510045031998, guid: f296a6af421adc14bb730e9a459ee3ec,
     type: 3}
   m_PrefabInstance: {fileID: 2281975708583160392}
   m_PrefabAsset: {fileID: 0}

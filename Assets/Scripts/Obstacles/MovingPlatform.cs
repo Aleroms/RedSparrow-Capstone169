@@ -35,6 +35,7 @@ public class MovingPlatform : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
+			print("hello");
 			other.transform.SetParent(this.transform);
 		}
 	}

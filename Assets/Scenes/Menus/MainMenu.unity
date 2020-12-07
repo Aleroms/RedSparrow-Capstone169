@@ -293,7 +293,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ProtoLevel_1
+          m_StringArgument: ProtoLevel_2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &106451748
@@ -425,7 +425,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ProtoLevel_3
+          m_StringArgument: ProtoLevel_3B
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &122194085
@@ -1524,7 +1524,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ProtoLevel_2
+          m_StringArgument: ProtoLevel_3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &865064623
@@ -1655,7 +1655,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ProtoLevel_2
+          m_StringArgument: ProtoLevel_3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &882716993
@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bda5cdb76ec457438196d0ee1d7c5c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2739a89c113d704c88bc81419ebc97c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2294,7 +2294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8da040d33e5a1e74fa5a48f094e6aeaf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9bf3b17844e928447a03d7b4e134b04b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2487,7 +2487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1346817688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2600,7 +2600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1467142974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2909,7 +2909,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ProtoLevel_3
+          m_StringArgument: ProtoLevel_3B
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1523897668
@@ -3289,7 +3289,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ProtoLevel_1
+          m_StringArgument: ProtoLevel_2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1732893417
@@ -3545,7 +3545,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9bf3b17844e928447a03d7b4e134b04b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bda5cdb76ec457438196d0ee1d7c5c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
