@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject _Rety_Button;
     [SerializeField]
+    private GameObject _Rety_from_checkpoint_Button;
+    [SerializeField]
 	private GameObject _gameover_text;
 	private bool temp = true;
     private bool mfaded = false;
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
 
 	public void PlayGame()
 	{
+        Debug.Log("being called");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 	public void Quit()
@@ -46,7 +49,7 @@ public class UIManager : MonoBehaviour
 		_OnPlayerDeath_Panel.SetActive(true);
         if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().livesLeft() == -1)
         {
-            _Rety_Button.SetActive(false);
+            _Rety_from_checkpoint_Button.SetActive(false);
         }
 		StartCoroutine(GameOverCoroutine());
 		//SceneManager.LoadScene("Credits");
@@ -83,6 +86,7 @@ public class UIManager : MonoBehaviour
         if(checkpointManager != null)
 			checkpointManager.DeadZone();
         Time.timeScale = 1f;
+        
     }
 
 
