@@ -30,7 +30,6 @@ public class UIManager : MonoBehaviour
 
 	public void PlayGame()
 	{
-        Debug.Log("being called");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 	public void Quit()
@@ -46,7 +45,8 @@ public class UIManager : MonoBehaviour
 	{
 		Time.timeScale = 0f;
 		Cursor.lockState = CursorLockMode.None;
-		_OnPlayerDeath_Panel.SetActive(true);
+
+        _OnPlayerDeath_Panel.SetActive(true);
         if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().livesLeft() == -1)
         {
             _Rety_from_checkpoint_Button.SetActive(false);
