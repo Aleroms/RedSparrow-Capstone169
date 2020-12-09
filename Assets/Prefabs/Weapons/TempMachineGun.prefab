@@ -246,7 +246,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 25c8f12822b93d041a409886c278439d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   type: 2
   gunDamage: 1
   semifireRate: 0.25
-  autofireRate: 0.1
+  autofireRate: 0.16
   weaponRange: 50
   knockBack: 100
   gunEnd: {fileID: 245839652416627180}
@@ -365,8 +365,8 @@ MonoBehaviour:
   pickUpRange: 3
   dropForwardForce: 2
   dropUpwardForce: 2
-  maxAmmoCount: 50
-  PgunType: 3
+  maxAmmoCount: 60
+  PgunType: 2
   Sguntype: 2
   isEquipped: 0
   PammoCount: 0
@@ -381,6 +381,7 @@ MonoBehaviour:
   spreadCooldown: 0
   isReloading: 0
   gunType: Machine Gun
+  reloadTime: 0.5
 --- !u!1 &245839652805090736
 GameObject:
   m_ObjectHideFlags: 0

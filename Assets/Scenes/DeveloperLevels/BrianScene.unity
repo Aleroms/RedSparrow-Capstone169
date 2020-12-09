@@ -499,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 4723609490021697270, guid: d671a0c590dc3bc4e96a9c4810afe0c7,
         type: 3}
       propertyPath: type
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4723609490021697270, guid: d671a0c590dc3bc4e96a9c4810afe0c7,
         type: 3}
@@ -514,7 +514,7 @@ PrefabInstance:
     - target: {fileID: 4723609490021697270, guid: d671a0c590dc3bc4e96a9c4810afe0c7,
         type: 3}
       propertyPath: isOn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723609490021697270, guid: d671a0c590dc3bc4e96a9c4810afe0c7,
         type: 3}
@@ -7110,7 +7110,7 @@ PrefabInstance:
     - target: {fileID: 245839652728327202, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: autofireRate
-      value: 0.15
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
@@ -7153,11 +7153,6 @@ PrefabInstance:
         type: 3}
       propertyPath: spread
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
-        type: 3}
-      propertyPath: maxAmmoCount
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 245839652728327206, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
@@ -7766,11 +7761,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5118029243917405044, guid: b92b6c17bbf2551419c580b1eb42e305,
-        type: 3}
-      propertyPath: ammoHeld
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 5118029243917405047, guid: b92b6c17bbf2551419c580b1eb42e305,
         type: 3}
       propertyPath: m_Name
@@ -7905,6 +7895,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 436614519}
+    - target: {fileID: 5874952970862044118, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
+        type: 3}
+      propertyPath: semifireRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: player
@@ -8018,7 +8013,7 @@ PrefabInstance:
     - target: {fileID: 7056454405271500491, guid: 333256ebfbd39f94c9ebc74408ea24f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 7056454405271500491, guid: 333256ebfbd39f94c9ebc74408ea24f1,
         type: 3}

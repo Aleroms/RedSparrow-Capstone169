@@ -118,7 +118,7 @@ MonoBehaviour:
   pickUpRange: 3
   dropForwardForce: 5
   dropUpwardForce: 5
-  maxAmmoCount: 10
+  maxAmmoCount: 15
   PgunType: 1
   Sguntype: 0
   isEquipped: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   spreadCooldown: 0
   isReloading: 0
   gunType: Pistol
+  reloadTime: 0.5
 --- !u!114 &4297523751006722407
 MonoBehaviour:
   m_ObjectHideFlags: 0

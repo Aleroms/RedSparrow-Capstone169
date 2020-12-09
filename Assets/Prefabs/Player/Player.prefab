@@ -233,7 +233,7 @@ MonoBehaviour:
     drop: q
     switchFireType: x
     reload: r
-    switchGuns: z
+    switchGuns: 1
     zoom: Mouse1
 --- !u!136 &436614522
 CapsuleCollider:

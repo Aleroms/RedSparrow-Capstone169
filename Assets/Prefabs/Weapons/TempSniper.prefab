@@ -485,7 +485,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f31037796d9aefb47854ae8488f0c7ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   pickUpRange: 3
   dropForwardForce: 5
   dropUpwardForce: 5
-  maxAmmoCount: 10
+  maxAmmoCount: 6
   PgunType: 3
   Sguntype: 0
   isEquipped: 0
@@ -601,6 +601,7 @@ MonoBehaviour:
   spreadCooldown: 0
   isReloading: 0
   gunType: Sniper
+  reloadTime: 0.5
 --- !u!114 &5874952970862044118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,7 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  gunDamage: 4
+  gunDamage: 5
   semifireRate: 0.25
   autofireRate: 0.25
   weaponRange: 50
