@@ -711,7 +711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 11, y: -282}
+  m_AnchoredPosition: {x: 11.91, y: -309}
   m_SizeDelta: {x: 328.18063, y: 41.3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &491843015
@@ -2487,7 +2487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1346817688
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2600,7 +2600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1467142974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4512,6 +4512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Controls_Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520527004756769863, guid: e5343a639ba8fb54389d1110e0cf0cfe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5343a639ba8fb54389d1110e0cf0cfe, type: 3}

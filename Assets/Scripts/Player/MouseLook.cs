@@ -14,6 +14,7 @@ public class MouseLook : MonoBehaviour
 	[SerializeField]
 	private bool _isWebGLBuild = true;
 
+	PlayerStatTrack statTrack;
 
     private void Start()
     {
