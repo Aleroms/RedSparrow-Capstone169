@@ -17,18 +17,32 @@ public class Spawner : MonoBehaviour
     private float spawnTimeDelay = 0f;//This is the delay between spawns. A number <= 0 means there will be no delay
 
     private float nextSpawnTime = 0f;
-
+    public int spawnCounter, spawnLimit = 100;
+    [SerializeField]
+    private float activationDelay = 0f; // Timer before spawner wakes
+    [SerializeField]
+    private bool dropLoot = false; // Timer before spawner wakes
     void Update()
     {
+        if (activationDelay > 0)
+            activationDelay -= Time.deltaTime;
         //If there is a positive number of spawns and the delay is over
-        if (numOfSpawns > 0 && Time.time > nextSpawnTime) {
-            Instantiate(spawnedItem, transform.position, transform.rotation);//Spawn the item
+        if (numOfSpawns > 0 && Time.time > nextSpawnTime && activationDelay <= 0 && spawnCounter < spawnLimit) {
+            GameObject spawn = Instantiate(spawnedItem, transform.position, transform.rotation);//Spawn the item
+            spawn.GetComponent<AI>().spawner = gameObject;
+            ++spawnCounter;
+            if (dropLoot == true)
+                spawn.GetComponent<AI>().dropItem = true;
             setCoolDown();//Set the delay
             numOfSpawns -= 1;//Subtract 1 from the number of spawnds
         }
         //If there is a negative number of spawnds and the delay is over
-        else if (numOfSpawns < 0 && Time.time > nextSpawnTime) {
-            Instantiate(spawnedItem, transform.position, transform.rotation);//Spawn the item
+        else if (numOfSpawns < 0 && Time.time > nextSpawnTime && activationDelay <= 0 && spawnCounter < spawnLimit) {
+            GameObject spawn = Instantiate(spawnedItem, transform.position, transform.rotation);//Spawn the item
+            spawn.GetComponent<AI>().spawner = gameObject;
+            ++spawnCounter;
+            if (dropLoot == true)
+                spawn.GetComponent<AI>().dropItem = true;
             setCoolDown();//And set the delay
         }
         //As you can see, if the number of spawns is 0, then nothing will happen

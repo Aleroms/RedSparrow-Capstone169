@@ -46,3 +46,7 @@ MonoBehaviour:
   spawnedItem: {fileID: 0}
   numOfSpawns: -1
   spawnTimeDelay: 0
+  spawnCounter: 0
+  spawnLimit: 100
+  activationDelay: 0
+  dropLoot: 0

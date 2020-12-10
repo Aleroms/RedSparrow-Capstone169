@@ -115,17 +115,19 @@ public class Player : MonoBehaviour
 		_pUI.HealthBar(_health);
 
         if (_health <= 0) {
+            resethealth();
+            _pUI.HealthBar(_health);
             _lives -= 1;
-            _gm.OnPlayerDeath();
-            if(_lives != -1)
-            {
-                _health = _maxHealth;
-            }
-           
+            Debug.Log("lives are " + _lives);
+            _gm.OnPlayerDeath();           
         }
 			
 	}
 
+    public void resethealth()
+    {
+        _health = _maxHealth;
+    }
     public int livesLeft()
     {
         return _lives;

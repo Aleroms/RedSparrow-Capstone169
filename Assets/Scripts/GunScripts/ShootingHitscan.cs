@@ -26,7 +26,7 @@ public class ShootingHitscan : MonoBehaviour
     private WaitForSeconds shotDuration = new WaitForSeconds(.07f);// This is how long the lazer will last onscreen
     private LineRenderer laserLine;// This is the laser
     private float nextFireTime;//This used with fireRate determines when the gun can fire
-    private float spreadScalar = 0.05f;
+    private float spreadScalar = 0.03f;
 
     void Start()
     {

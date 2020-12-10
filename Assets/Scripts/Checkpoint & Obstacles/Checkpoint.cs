@@ -45,5 +45,8 @@ public class Checkpoint : MonoBehaviour
 		//allow reactivation of the checkpoint
 		//_trigger = false;
 	}
-	
+
+    public bool getTriggerState() {
+        return _trigger;
+    }
 }

@@ -500,7 +500,7 @@ Transform:
   - {fileID: 342508052}
   - {fileID: 819371115}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187056701
 GameObject:
@@ -534,18 +534,6 @@ Transform:
   m_Father: {fileID: 1894402250}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &197963255 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 766793808151214108, guid: 19a226f71de37e34cb02960b4dcacbee,
-    type: 3}
-  m_PrefabInstance: {fileID: 1800951023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &233759448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -705,20 +693,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &236226821 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7171202549576188866, guid: 19a226f71de37e34cb02960b4dcacbee,
-    type: 3}
-  m_PrefabInstance: {fileID: 1800951023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &264334650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &393197568
 GameObject:
@@ -2313,12 +2289,12 @@ PrefabInstance:
         type: 3}
       propertyPath: reticlePlayer
       value: 
-      objectReference: {fileID: 236226821}
+      objectReference: {fileID: 0}
     - target: {fileID: 4297523751006722406, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: pickupPrompt
       value: 
-      objectReference: {fileID: 197963255}
+      objectReference: {fileID: 0}
     - target: {fileID: 4297523751006722407, guid: 02862cb9a385b6e499027b1b1239f073,
         type: 3}
       propertyPath: player
@@ -2747,12 +2723,12 @@ PrefabInstance:
         type: 3}
       propertyPath: reticlePlayer
       value: 
-      objectReference: {fileID: 236226821}
+      objectReference: {fileID: 0}
     - target: {fileID: 245839652728327203, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: pickupPrompt
       value: 
-      objectReference: {fileID: 197963255}
+      objectReference: {fileID: 0}
     - target: {fileID: 245839652728327206, guid: 91275674dcd163845a4ce839d6666606,
         type: 3}
       propertyPath: m_Name
@@ -4067,6 +4043,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1989726450654951480, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989726450654951480, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3883173986794819830, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: m_IsActive
@@ -4200,6 +4186,16 @@ PrefabInstance:
     - target: {fileID: 5368235197007211634, guid: 19a226f71de37e34cb02960b4dcacbee,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877109559711938793, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877109559711938793, guid: 19a226f71de37e34cb02960b4dcacbee,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8823041509037930030, guid: 19a226f71de37e34cb02960b4dcacbee,
@@ -4517,12 +4513,12 @@ PrefabInstance:
         type: 3}
       propertyPath: reticlePlayer
       value: 
-      objectReference: {fileID: 236226821}
+      objectReference: {fileID: 0}
     - target: {fileID: 5874952970862044119, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: pickupPrompt
       value: 
-      objectReference: {fileID: 197963255}
+      objectReference: {fileID: 0}
     - target: {fileID: 5874952970862044139, guid: 6c393a5b0f2d6414a83c3c3d74a617c7,
         type: 3}
       propertyPath: m_Name
@@ -4565,7 +4561,7 @@ Transform:
   - {fileID: 628574494}
   - {fileID: 187056702}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1915936026 stripped
 Transform:
