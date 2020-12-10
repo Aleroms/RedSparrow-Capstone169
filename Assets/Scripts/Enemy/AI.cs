@@ -6,10 +6,13 @@ using UnityEngine;
 //Enemy Types: 0 = spider, 1 = drone, 2 = racer, 3 = walker
 public class AI : MonoBehaviour
 {
+    [Tooltip("Spider[0]/Drone[1]/Racer[2]/Walker[3]")]
     public int type;
-    public bool isOn = true, willMove = true, willAttack = true, willTurn = true, willPatrol;
+    public bool isOn = true, willMove = true, willAttack = true, willTurn = true, willPatrol, dropItem;
     public float duration;
-    public GameObject bulletPrefab;
+    public LayerMask mask;
+    public GameObject bulletPrefab, spawner;
+    public Material redMaterial, greenMaterial;
     private GameObject player, bullet;
     private float randomTime, randomX, randomZ, currentDuration, speed, distance, cooldown, jumpCooldown, jumpDuration, attackCooldown, gravity = -9.81f, x, y, z;
     private int damage, random, health, nearThreshold = 6, farThreshold = 12;
@@ -22,17 +25,15 @@ public class AI : MonoBehaviour
     public int[] damageArray = new int[4];
     public float[] attackCooldownArray = new float[4];
     public float[] speedArray = new float[4];
+    public GameObject[] dropArray = new GameObject[4];
     private LineRenderer laserLine;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.5f);
     private GameObject end, losChecker;
     private RaycastHit hit;
     private Vector3 rayOrigin;
-    // private int layerMask = 1 << 11;
-    public LayerMask mask; // = LayerMask.GetMask("Checkpoints");
-    [SerializeField]
     private Vector3 targetPosition;
-    public Material redMaterial, greenMaterial;
     private float spread = 0.25f;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -54,8 +55,9 @@ public class AI : MonoBehaviour
         }
         if (type == 0) // transform capsule collider size to match type
         {
-            controller.radius = 0.25f;
+            controller.radius = 0.5f;
             controller.height = 0.5f;
+            controller.center = new Vector3(0, 0.25f, 0);
         }
         else if (type == 1)
         {
@@ -298,6 +300,22 @@ public class AI : MonoBehaviour
             GameObject canvas = GameObject.Find("Canvas");
             if (canvas.GetComponent<LevelTwoKillCounter>() != null)
                 canvas.GetComponent<LevelTwoKillCounter>().DetectKill();
+            if (dropItem)
+            {
+                random = Random.Range(0, 16 / healthArray[type]); // chance to drop item goes up based on its max hp
+                //print(random);
+                if (random == 0) // drops item
+                {
+                    random = Random.Range(0, 4);
+                    //print(random);
+                    for (int i = 0; i < 4; ++i) // random between healthpack or ammo
+                        if (random == i)
+                            Instantiate(dropArray[i], transform.position, transform.rotation); // - (transform.up * controller.height / 2)
+                }
+            }
+            if (spawner != null)
+                --spawner.GetComponent<Spawner>().spawnCounter;
+                
         }
             
     }

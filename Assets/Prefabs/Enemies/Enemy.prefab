@@ -235,9 +235,15 @@ MonoBehaviour:
   willAttack: 1
   willTurn: 1
   willPatrol: 0
+  dropItem: 0
   duration: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
   bulletPrefab: {fileID: 5471505389857925286, guid: d642f0236d6e5b2408802bc9bad412b0,
     type: 3}
+  redMaterial: {fileID: 2100000, guid: c93dc9a449b42d5438671a85924f8996, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 45dbdc806406064479cc6f0e6b22d441, type: 2}
   nameArray:
   - Spider
   - Drone
@@ -260,12 +266,11 @@ MonoBehaviour:
   - 1.5
   - 1
   - 0.75
-  mask:
-    serializedVersion: 2
-    m_Bits: 512
-  targetPosition: {x: 0, y: 0, z: 0}
-  redMaterial: {fileID: 2100000, guid: c93dc9a449b42d5438671a85924f8996, type: 2}
-  greenMaterial: {fileID: 2100000, guid: 45dbdc806406064479cc6f0e6b22d441, type: 2}
+  dropArray:
+  - {fileID: 2413218291990185983, guid: bb72cf67d127ee74d85915bae29f6bac, type: 3}
+  - {fileID: 5118029243917405047, guid: b92b6c17bbf2551419c580b1eb42e305, type: 3}
+  - {fileID: 4624815043473776204, guid: 063f8bfaaf69ba34d92f593c60cb04ea, type: 3}
+  - {fileID: 3294526764675709065, guid: b0cdccb5137e6ff4fb8086e99764eeb0, type: 3}
 --- !u!1 &6791760429467334308
 GameObject:
   m_ObjectHideFlags: 0

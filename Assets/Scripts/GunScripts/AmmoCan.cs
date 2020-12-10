@@ -11,6 +11,8 @@ public class AmmoCan : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!GetComponent<Rigidbody>().isKinematic) // simulated gravity
+            GetComponent<Rigidbody>().isKinematic = true;
         if (other.tag == "Player") {
             print("ControllerColliderHit!");
             if (ammoType == 1)
