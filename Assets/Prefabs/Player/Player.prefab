@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 1916943055000976211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 2.18, z: -17.01}
-  m_LocalScale: {x: 0.72515, y: 0.72515, z: 0.72515}
+  m_LocalScale: {x: 1.1312339, y: 1.1312339, z: 1.1312339}
   m_Children:
   - {fileID: 1916943055603452680}
   - {fileID: 1099088509487323945}
@@ -139,7 +139,7 @@ MonoBehaviour:
   _groundDistance: 0.4
   _sprintCooldown: 1
   _stamina: 3
-  _maxStamina: 5
+  _maxStamina: 0.8
   _sprintSpeed: 10
   _health: 100
   _lives: 3
@@ -391,9 +391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908acf7d32eb8ff41b77b95ed83af897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivity: 150
+  _sensitivity: 1
   _player: {fileID: 1916943055000976223}
-  _isWebGLBuild: 1
+  _isWebGLBuild: 0
 --- !u!81 &3200564653356960418
 AudioListener:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1099088509487323945}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
