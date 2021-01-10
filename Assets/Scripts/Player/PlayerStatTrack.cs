@@ -39,13 +39,6 @@ public class PlayerStatTrack : MonoBehaviour
     {
         return playerStats.hasGun2;
     }
-    public float getMouseSensitivity() {
-        return PlayerPrefs.GetFloat("mouseSensitivity", 3.2f);
-    }
-    public float getVolumeLevel()
-    {
-        return PlayerPrefs.GetFloat("volumeLevel", 70f);
-    }
     public int getKillCount()
     {
         return playerStats.MissionKills;
@@ -74,11 +67,24 @@ public class PlayerStatTrack : MonoBehaviour
     public void resetKills() {
         playerStats.MissionKills = 0;
     }
-    public void setMouseSensitivity(float input) {
+
+
+
+
+    public void setMouseSensitivity(float input) 
+    {
         PlayerPrefs.SetFloat("mouseSensitivity", input);
     }
     public void setVolumeLevel(float input)
     {
         PlayerPrefs.SetFloat("volumeLevel", input);
+    }
+    public float getMouseSensitivity()
+    {
+        return PlayerPrefs.GetFloat("mouseSensitivity", 3.2f);
+    }
+    public float getVolumeLevel()
+    {
+        return PlayerPrefs.GetFloat("volumeLevel", 70f);
     }
 }

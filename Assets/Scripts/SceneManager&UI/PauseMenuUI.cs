@@ -90,7 +90,7 @@ public class PauseMenuUI : MonoBehaviour
 		mouseSlider.value = 3.2f;
 		volumeSlider.value = 70;
 
-        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(3.2f);
+        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(3.2f * 10 + 10);
         player.GetComponent<PlayerStatTrack>().setVolumeLevel(70);
     }
 	public void MouseSensitivity(float input)
@@ -98,7 +98,7 @@ public class PauseMenuUI : MonoBehaviour
 		mouseInput.text = input.ToString("F1");
         //StatsData.mouseSensitivity = input * 10 + 70;
         // N*10 + 70
-        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(input * 10 + 70);
+        player.GetComponent<PlayerStatTrack>().setMouseSensitivity(input * 10 + 10);
     }
 	public void VolumeLevel(float input)
 	{
